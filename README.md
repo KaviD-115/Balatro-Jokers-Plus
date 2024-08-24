@@ -1,0 +1,43 @@
+![Screenshot 2024-08-23 215913](https://github.com/user-attachments/assets/a90c211c-658e-4a7d-bdd3-63b37b56e366)
+
+       Balatro Jokers Plus adds 6 Jokers to your game that aim to look and feel Vanilla, but add NEW ways to play!
+
+                                                      PHANTOM
+
+![PhantomJokerArtplus](https://github.com/user-attachments/assets/a2e1ab8a-fbbd-4159-98a9-65e037c1797a)                                                    
+
+Uncommon - This Joker Gains 1X Mult per Spectral card used, resets if any Spectral Pack is skipped, (Currently: 1X Mult)
+
+                                                   SIX AND STONES
+
+![SixandStonesJokerArtplus](https://github.com/user-attachments/assets/89d69034-e9dd-432c-9f5f-b09da2a9e0be)
+
+Common - Each played 6 or Stone Card gives +6 Mult when scored
+
+                                                   INTERSTELLAR
+
+![InterstellarJokerArtplus](https://github.com/user-attachments/assets/4ff16e35-1bee-4ec8-86e0-eb1c47833196)
+
+Uncommon - 1 in 4 chance for each played 7 to create a Negative Planet card when scored
+
+                                                  THE LEMNISC8
+
+![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7)
+
+Rare - This Joker Gains +1 Mult for each 8 scored and +8 Chips for each 8 discarded (Currently: +0 Mult / +0 Chips)
+
+                                                     PJA 1
+
+![PSAOneJokerArtplus](https://github.com/user-attachments/assets/cd32fc52-9ef4-4da7-ab91-378cf1c7be37)
+
+Common - 1 in 2 chance to create a Wheel of Fortune card when any Booster Pack is opened (Must have room)
+
+                                                    PJA 10
+![PSA10JokerArt62x](https://github.com/user-attachments/assets/b12388c0-2a52-4fb5-9a6b-ad74e3f6d8c8)
+
+Rare - 1 in 3 chance to create an Aura card when any Booster Pack is opened (Must have room)
+
+
+
+                                                   Closing
+All coding and artwork was done by me alone, but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. This is my first attempt at making a Mod so there is bound to be things that need updated or changed. Mainly the file structure will absolutely need to be reworked, I am still learning, please understand. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, whether it be changes you feel it needs, balancing opinions, or if you just want to tell me things you like/don't like. But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible!
