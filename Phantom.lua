@@ -33,7 +33,7 @@ SMODS.Joker{
     discovered = true,
     eternal_compat = true,
     blueprint_compat = true,
-    perishable_compat = true,
+    perishable_compat = false,
     config = {extra = {Xmult_add = 1, Xmult = 1}},
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
