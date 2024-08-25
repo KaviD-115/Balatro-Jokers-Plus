@@ -1,0 +1,336 @@
+--- STEAMODDED HEADER
+--- MOD_NAME: BalatroJokersPlus
+--- MOD_ID: BalatroJokersPlus
+--- MOD_AUTHOR: [KaviD]
+--- MOD_DESCRIPTION: Adds 6 Thematical Balatro Jokers
+--- BADGE_COLOR: 191970
+--- DISPLAY_NAME: Balatro Jokers Plus
+--- VERSION: 1.0.0
+--- PREFIX: PlusJokers
+
+-- Registers the atlas for Jokers
+SMODS.Atlas({ 
+    key = "jokersplus",
+    path = "jokersplus.png", 
+    px = 71,
+    py = 95,
+})
+
+SMODS.Atlas({ 
+    key = "jokersplus2",
+    path = "jokersplus2.png", 
+    px = 81,
+    py = 137,
+})
+
+SMODS.Joker{
+  key = "sixandstones",
+  loc_txt = {
+    name = 'Six and Stones',
+    text = {
+            'Each played {C:attention}6{} or {C:attention}Stone Card{}',
+            'gives {C:mult}+6{} Mult when scored',
+        }
+    },
+    rarity = 1,
+    atlas = "jokersplus", pos = {x = 1, y = 0},
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = true,
+    config = {extra = 6},
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play then
+            if context.other_card:get_id() == 6 or context.other_card.ability.name == 'Stone Card' then
+              return {
+                    mult = card.ability.extra,
+                    card = card,
+                }
+            end
+        end
+    end,
+}
+
+SMODS.Joker{
+  key = 'phantom',
+  loc_txt = {
+    name = 'Phantom',
+    text = {
+     "This Joker Gains {X:mult,C:white}X#1#{} Mult",
+			"per {C:spectral}Spectral{} card used, resets",
+                        "if any {C:spectral}Spectral Pack{} is {C:attention}skipped{}",
+			"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+         }
+    },
+    rarity = 2,
+    atlas = "jokersplus", pos = {x = 2, y = 0},
+    cost = 7,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {Xmult_add = 1, Xmult = 1}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
+  end,
+    calculate = function(self, card, context)
+      if context.using_consumeable and not context.blueprint then
+                if context.consumeable.ability.set == "Spectral" then
+               card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
+               G.E_MANAGER:add_event(Event({
+                func = function()
+                  card:juice_up(0.7)
+                  card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT, instant = true})
+          return true; end}))
+      end
+                end
+      if context.skipping_booster and not context.blueprint and G.STATE == G.STATES.SPECTRAL_PACK then
+                  card.ability.extra.Xmult = 1
+                  G.E_MANAGER:add_event(Event({
+                func = function()
+                  card:juice_up(0.7)
+                  card_eval_status_text(card,'extra',nil, nil, nil,{message = "Reset", colour = G.C.ORANGE, instant = true})
+          return true; end}))
+      end
+      if context.joker_main and card.ability.extra.Xmult > 1 then
+        return {
+          message = localize{type='variable',key='a_xmult',vars={card.ability.extra.Xmult}},
+          Xmult_mod = card.ability.extra.Xmult,
+        }
+      end
+    end
+}
+
+SMODS.Joker{
+  key = 'interstellar',
+  loc_txt = {
+    name = 'Interstellar',
+    text = {
+     '{C:green}#1# in #2#{} chance for each',
+     'played {C:attention}7{} to create a {C:dark_edition}Negative{}',
+     '{C:planet}Planet{} card when scored'
+        }
+    },
+    rarity = 2,
+    atlas = "jokersplus", pos = {x = 3, y = 0},
+    cost = 7,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = true,
+    config = {extra = 4},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
+  end,
+    calculate = function(self, card, context)
+                    if context.individual and context.cardarea == G.play then
+            if context.other_card:get_id() == 7 then
+        if pseudorandom('SoaringSevens') < G.GAME.probabilities.normal/card.ability.extra then
+         G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+          G.E_MANAGER:add_event(Event({
+                            trigger = 'before',
+                            delay = 0.0,
+                            func = (function()
+                                local card = create_card('Planet', G.consumeables, nil, nil, nil, nil, nil, '8ba')
+                                card:set_edition('e_negative', true)
+                                card:add_to_deck()
+                                G.consumeables:emplace(card)
+                                G.GAME.consumeable_buffer = 0
+                                return true
+                            end)
+                        }))
+                        return {
+                            message = localize('k_plus_planet'),
+                            colour = G.C.SECONDARY_SET.Planet,
+                            card = card
+                               }
+                  end
+             end
+        end
+   end,
+}
+
+SMODS.Joker{
+  key = 'thelemnisc8',
+  loc_txt = {
+    name = 'The Lemnisc8',
+    text = {
+     "This Joker Gains {C:mult}+#3#{} Mult",
+			"for each {C:attention}8{} scored",
+			"and {C:chips}+#4#{} Chips for",
+			"each {C:attention}8{} discarded",
+			"{C:inactive}(Currently",
+			"{C:mult}+#1#{C:inactive} Mult / {C:chips}+#2# {C:inactive}Chips)",
+         }
+    },
+    rarity = 3,
+    atlas = "jokersplus", pos = {x = 0, y = 0},
+    cost = 8,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {mult = 0, chips = 0, mult_gain = 1, chip_gain = 8}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.mult, card.ability.extra.chips, card.ability.extra.mult_gain, card.ability.extra.chip_gain}}
+  end,
+    calculate = function(self, card, context)
+      if context.individual and context.cardarea == G.play then
+        if context.other_card:get_id() == 8 then
+          card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
+      return {
+        card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT, instant = true}),
+        card = card
+            }
+        end
+	elseif context.discard and
+            not context.other_card.debuff then            
+    if context.other_card:get_id() == 8 and not context.blueprint then
+      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
+      return {
+        message = 'Upgraded!',
+        colour = G.C.CHIPS,
+        delay = 0.45, 
+        card = card
+            }
+          end
+        end
+      if context.joker_main then
+	card_eval_status_text(card,'chips',card.ability.extra.chips, nil, nil)
+        return {
+          mult_mod = card.ability.extra.mult,
+          message = localize{type = 'variable', key = 'a_mult', vars = {card.ability.extra.mult}},
+          chip_mod = card.ability.extra.chips,
+      }
+      end
+    end
+}
+
+SMODS.Joker{
+  key = 'pjaten',
+  loc_txt = {
+    name = 'PJA 10',
+    text = {
+     "{C:green}#1# in #2#{} chance to create",
+			"an {C:spectral}Aura{} card when any",
+			"{C:attention}Booster Pack{} is opened",
+                        "{C:inactive}(Must have room)"
+         }
+    },
+    rarity = 3,
+    atlas = "jokersplus2", pos = {x = 1, y = 0},
+    cost = 10,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = 3},
+    -- Sets the sprite and hitbox
+    set_ability = function(self, card, initial, delay_sprites)
+        local w_scale, h_scale = 81/71, 137/95
+
+        card.T.h = card.T.h * h_scale
+        card.T.w = card.T.w * w_scale
+    end,
+
+    set_sprites = function(self, card, front)
+        local w_scale, h_scale = 71/71, 95/95
+
+        card.children.center.scale.y = card.children.center.scale.y * h_scale
+        card.children.center.scale.x = card.children.center.scale.x * w_scale
+    end,
+
+    load = function(self, card, card_table, other_card)
+        local w_scale, h_scale = 81/71, 137/95
+        
+        card.T.h = card.T.h * h_scale
+        card.T.w = card.T.w * w_scale
+    end,
+
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal,card.ability.extra}}
+  end,
+    calculate = function(self, card, context)
+      if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+        if pseudorandom('PJA') < G.GAME.probabilities.normal/card.ability.extra then
+          return {
+          G.E_MANAGER:add_event(Event({
+                        func = function() 
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_aura', 'sup')
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            return true 
+                        end})) 
+                }         
+            end
+        end
+    end,
+}
+
+SMODS.Joker{
+  key = 'pjaone',
+  loc_txt = {
+    name = 'PJA 1',
+    text = {
+     "{C:green}#1# in #2#{} chance to create",
+			"a {C:tarot}Wheel of Fortune{} card when any",
+			"{C:attention}Booster Pack{} is opened",
+                        "{C:inactive}(Must have room)"
+         }
+    },
+    rarity = 1,
+    atlas = "jokersplus2",pos = {x = 0, y = 0}, 
+    cost = 4,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = 2},
+    -- Sets the sprite and hitbox
+    set_ability = function(self, card, initial, delay_sprites)
+        local w_scale, h_scale = 81/71, 137/95
+
+        card.T.h = card.T.h * h_scale
+        card.T.w = card.T.w * w_scale
+    end,
+
+    set_sprites = function(self, card, front)
+        local w_scale, h_scale = 71/71, 95/95
+
+        card.children.center.scale.y = card.children.center.scale.y * h_scale
+        card.children.center.scale.x = card.children.center.scale.x * w_scale
+    end,
+
+    load = function(self, card, card_table, other_card)
+        local w_scale, h_scale = 81/71, 137/95
+        
+        card.T.h = card.T.h * h_scale
+        card.T.w = card.T.w * w_scale
+    end,
+
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal,card.ability.extra}}
+  end,
+    calculate = function(self, card, context)
+      if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+        if pseudorandom('PJAone') < G.GAME.probabilities.normal/card.ability.extra then
+          return {
+          G.E_MANAGER:add_event(Event({
+                        func = function() 
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_wheel_of_fortune', 'sup')
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            return true 
+                        end})) 
+                }         
+            end
+        end
+    end,
+}
