@@ -1,4 +1,4 @@
-![Screenshot 2024-08-23 215913](https://github.com/user-attachments/assets/a90c211c-658e-4a7d-bdd3-63b37b56e366)
+![Pluscoverart1](https://github.com/user-attachments/assets/91665c5c-81ce-404c-9645-bad80e6f440b)
 
 Balatro Jokers Plus adds 6 Jokers to your game that aim to look and feel Vanilla, but add NEW ways to play!
 
@@ -66,8 +66,6 @@ Cost: $4
 
 -- PJA 10 --
 
------
-
 ![PSA10JokerArt62x](https://github.com/user-attachments/assets/b12388c0-2a52-4fb5-9a6b-ad74e3f6d8c8)
 
 Rarity: Rare 
@@ -78,6 +76,8 @@ Cost: $10
 
 -----
 
+![Screenshot 2024-08-23 215913](https://github.com/user-attachments/assets/a90c211c-658e-4a7d-bdd3-63b37b56e366)
+
 Closing
 
-All coding and artwork was done by me alone, but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible!
+All coding and joker artwork was done by me, (cover art for Github provided by my lovely wife) but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible! 
