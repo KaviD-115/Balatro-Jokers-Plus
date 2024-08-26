@@ -13,7 +13,7 @@ Rarity: Uncommon
 
 Cost: $7
 
-"This Joker Gains 1X Mult per Spectral card used, resets if any Spectral Pack is skipped, (Currently: 1X Mult)"
+"This Joker Gains X1 Mult per Spectral card used, resets if any Spectral Pack is skipped, (Currently: X1 Mult)"
 
 ------
 
@@ -53,18 +53,6 @@ Cost: $8
 
 -----
 
--- PJA 1 --
-
-![PSAOneJokerArtplus](https://github.com/user-attachments/assets/cd32fc52-9ef4-4da7-ab91-378cf1c7be37)
-
-Rarity: Common
-
-Cost: $4
-
-"1 in 2 chance to create a Wheel of Fortune card when any Booster Pack is opened (Must have room)"
-
------
-
 -- PJA 10 --
 
 ![PSA10JokerArt62x](https://github.com/user-attachments/assets/b12388c0-2a52-4fb5-9a6b-ad74e3f6d8c8)
@@ -74,6 +62,18 @@ Rarity: Rare
 Cost: $10
 
 "1 in 3 chance to create an Aura card when any Booster Pack is opened (Must have room)"
+
+-----
+
+-- PJA 1 --
+
+![PSAOneJokerArtplus](https://github.com/user-attachments/assets/cd32fc52-9ef4-4da7-ab91-378cf1c7be37)
+
+Rarity: Common
+
+Cost: $4
+
+"1 in 2 chance to create a Wheel of Fortune card when any Booster Pack is opened (Must have room)"
 
 -----
 
