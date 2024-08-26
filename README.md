@@ -1,4 +1,4 @@
-![pluscoverart2](https://github.com/user-attachments/assets/fdae7db9-881c-4d99-b1ef-78ce7274d9f7)
+![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
 
 
 Balatro Jokers Plus adds 6 Jokers to your game that aim to look and feel Vanilla, but add NEW ways to play!
