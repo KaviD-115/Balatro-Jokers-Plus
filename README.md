@@ -77,8 +77,19 @@ Cost: $4
 
 -----
 
+
+To Download, Follow the instructions in the image below:
+
+![BJPHowToDownloadPrompt](https://github.com/user-attachments/assets/d90cceb5-b12a-4a1d-b012-bbd2f60794e9)
+
+Then, place the file into your mod folder and Extract all files from the folder and you're all set!
+
+-----
+
 ![Screenshot 2024-08-23 215913](https://github.com/user-attachments/assets/a90c211c-658e-4a7d-bdd3-63b37b56e366)
 
 Closing
 
 All coding and joker artwork was done by me, (cover art for Github provided by my lovely wife) but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible! 
+
+-----
