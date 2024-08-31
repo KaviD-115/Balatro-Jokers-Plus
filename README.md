@@ -77,6 +77,59 @@ Cost: $4
 
 -----
 
+NEW CONTENT UPDATE! 
+
+- PACK 1 (Adds 4 new Jokers, expanding Joker count from 6 to 10) Jokers listed below:
+
+-----
+
+-- PLUMBER --
+
+![PlumberJokerArt7X2](https://github.com/user-attachments/assets/33c39395-6592-4716-9101-101c5a6b06aa)
+
+Rarity: Common
+
+Cost: $5
+
+"Gains 12 chips if played hand contains a Flush (Currently +0 chips)"
+
+-----
+
+-- COTTON CANDY --
+
+![CottonCandyJokerArt12X2](https://github.com/user-attachments/assets/f7a5e290-2e34-4ada-b366-dbbff1596571)
+
+Rarity: Uncommon
+
+Cost: $6
+
+"Gain +1 hand +1 discard at the start of each round for the next 5 rounds"
+
+-----
+
+-- WILD WEST --
+
+![WildWestJokerArt7X2](https://github.com/user-attachments/assets/5ecd7709-db26-4b93-969d-ce557d3bb5e6)
+
+Rarity: Common
+
+Cost: $5
+
+"Retrigger all Wild Cards played" [Enters the Joker pool when your deck contains a Wild Card]
+
+-----
+
+-- DAGONET --  [Da-guh-nay]
+
+![Screenshot 2024-08-31 180025](https://github.com/user-attachments/assets/5eb4a1d2-6a75-48b8-8bbc-6f6bfab8266b)
+
+Rarity: Legendary
+
+Cost: Soul Card
+
+"When Blind is selected, destroy Joker to the right and permanently gain X0.75 Mult (Currently X1 Mult)"
+
+-----
 
 To Download, Follow the instructions in the image below:
 
