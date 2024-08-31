@@ -23,6 +23,15 @@ SMODS.Atlas({
     py = 137,
 })
 
+SMODS.Atlas({ 
+    key = "jokersplusupdatepack1",
+    path = "jokersplusupdatepack1.png", 
+    px = 71,
+    py = 95,
+})
+
+
+
 SMODS.Joker{
   key = "sixandstones",
   loc_txt = {
@@ -332,5 +341,196 @@ SMODS.Joker{
                 }         
             end
         end
+    end,
+}
+
+SMODS.Joker{
+  key = 'plumber',
+  loc_txt = {
+    name = 'Plumber',
+    text = {
+     "Gains {C:chips}+#2#{} chips",
+     "if played hand",
+     "contains a {C:attention}Flush{}",
+     "{C:inactive}(Currently {C:chips}+#1# {C:inactive}Chips)"
+        }
+    },
+    rarity = 1,
+    atlas = "jokersplusupdatepack1", pos = {x = 0, y = 0},
+    cost = 5,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {chips = 0, chip_gain = 12}},
+    loc_vars = function(self, info_queue, card)
+   return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
+  end, 
+    calculate = function(self, card, context)
+      if context.cardarea == G.jokers and context.before and not context.blueprint then 
+        if context.scoring_name == "Flush" or context.scoring_name == "Straight Flush" or context.scoring_name == "Royal Flush" or context.scoring_name == "Flush Five" or context.scoring_name == "Flush House" then
+                        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
+                        return {
+                            message = localize('k_upgrade_ex'),
+                            colour = G.C.CHIPS,
+                            card = card
+                        }
+                         end
+        end
+        if context.joker_main then
+        return {
+          message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}},
+          chip_mod = card.ability.extra.chips,
+      }
+     end
+    end,
+}
+
+SMODS.Joker{
+  key = 'cottoncandy',
+  loc_txt = {
+    name = 'Cotton Candy',
+    text = {
+     "Gain {C:chips}+#1#{} hand and {C:red}+#2#{} discard",
+     "at the start of each round", 
+     "for the next {C:attention}#3#{} rounds",
+        }
+    },
+    rarity = 2,
+    atlas = "jokersplusupdatepack1", pos = {x = 1, y = 0}, 
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = {hands = 1, discards = 1, remaining = 5}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.hands, card.ability.extra.discards, card.ability.extra.remaining}}
+  end,
+    calculate = function(self, card, context)
+        if context.end_of_round and not (context.individual or context.repetition or context.blueprint) then
+                if card.ability.extra.remaining - 1 <= 0 then 
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('tarot1')
+                            card.T.r = -0.2
+                            card:juice_up(0.3, 0.4)
+                            card.states.drag.is = true
+                            card.children.center.pinch.x = true
+                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                                func = function()
+                                        G.jokers:remove_card(card)
+                                        card:remove()
+                                        card = nil
+                                    return true; end})) 
+                            return true
+                        end
+                    })) 
+                    return {
+                        message = localize('k_eaten_ex'),
+                        colour = G.C.FILTER
+                    }
+        else
+            card.ability.extra.remaining = card.ability.extra.remaining - 1
+                    return {
+                        message = card.ability.extra.remaining..'',
+                        colour = G.C.FILTER
+                    } 
+            end
+        end
+        if context.setting_blind and not (context.blueprint_card or card).getting_sliced then
+                    ease_hands_played(card.ability.extra.hands)
+       end
+        if context.setting_blind and not (context.blueprint_card or card).getting_sliced then
+                    ease_discard(card.ability.extra.discards)
+       end
+
+    end,
+}
+
+SMODS.Joker{
+  key = 'wildwest',
+  loc_txt = {
+    name = 'Wild West',
+    text = {
+     "Retrigger all",
+     "{C:attention}Wild Cards{} played"
+        }
+    },
+    rarity = 1,
+    atlas = "jokersplusupdatepack1", pos = {x = 2, y = 0},
+    cost = 5,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = true,
+    enhancement_gate = 'm_wild',
+    config = {extra = {repetitions = 1}},
+    calculate = function(self, card, context)
+            if context.cardarea == G.play and context.repetition and not context.repetition_only then
+                if context.other_card.ability.effect == "Wild Card" then
+        return {
+          message = 'Again!',
+          repetitions = card.ability.extra.repetitions,
+          card = card
+        }
+          end
+            end
+    end,
+}
+
+SMODS.Joker{
+  key = 'dagonet',
+  loc_txt = {
+    name = 'Dagonet',
+    text = {
+     "When {C:attention}Blind{} is selected,",
+     "destroy Joker to the right",
+     "and permanently gain {X:mult,C:white}X#1#{} Mult",
+     "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+        }
+    },
+    rarity = 4,
+    atlas = "jokersplusupdatepack1", pos = {x = 3, y = 0}, soul_pos = { x = 4, y = 0 },
+    cost = 20,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {Xmult_add = 0.75, Xmult = 1}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
+  end,
+    calculate = function(self, card, context)
+                    if context.setting_blind and not context.blueprint then
+                local my_pos = nil
+                for i = 1, #G.jokers.cards do
+                card = card
+                     if G.jokers.cards[i] == card then my_pos = i; break 
+                    end
+                     end
+                if my_pos and G.jokers.cards[my_pos+1] and not self.getting_sliced and not G.jokers.cards[my_pos+1].ability.eternal and not G.jokers.cards[my_pos+1].getting_sliced then 
+                    local sliced_card = G.jokers.cards[my_pos+1]
+                    sliced_card.getting_sliced = true
+                    G.GAME.joker_buffer = G.GAME.joker_buffer - 1
+                    G.E_MANAGER:add_event(Event({func = function()
+                        G.GAME.joker_buffer = 0
+                        card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
+                        card:juice_up(0.8, 0.8)
+                        sliced_card:start_dissolve({HEX("57ecab")}, nil, 1.6)
+                        play_sound('slice1', 0.96+math.random()*0.08)
+                    return true end }))
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize{type = 'variable', key = 'a_xmult', vars = {card.ability.extra.Xmult_add}}, colour = G.C.RED, no_juice = true})
+                end
+                      elseif context.joker_main and card.ability.extra.Xmult > 1 then
+                            return {
+                                message = localize{type='variable',key='a_xmult',vars={card.ability.extra.Xmult}},
+                                Xmult_mod = card.ability.extra.Xmult,
+                          }
+            end
     end,
 }
