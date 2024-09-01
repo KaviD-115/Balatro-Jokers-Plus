@@ -103,7 +103,7 @@ Rarity: Uncommon
 
 Cost: $6
 
-"Gain +1 hand +1 discard at the start of each round for the next 5 rounds"
+"Gain +1 hand and +1 discard at the start of each round for the next 5 rounds"
 
 -----
 
@@ -143,6 +143,6 @@ Then, place the file into your mod folder and Extract all files from the folder 
 
 Closing
 
-All coding and joker artwork was done by me, (cover art for Github provided by my lovely wife) but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible! 
+All coding and joker artwork was done by me, (cover art for Github provided by my lovely wife) but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. I designed this mod for those (like myself) who love Vanilla Balatro but just want to experience it in new flavors without changing the feel and hopefully balance of the game too much. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible! 
 
 -----
