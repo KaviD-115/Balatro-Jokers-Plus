@@ -139,7 +139,8 @@ Then, place the file into your mod folder and Extract all files from the folder 
 
 -----
 
-![Screenshot 2024-08-23 215913](https://github.com/user-attachments/assets/a90c211c-658e-4a7d-bdd3-63b37b56e366)
+![Screenshot 2024-08-31 200941](https://github.com/user-attachments/assets/2f9e232c-68bf-458f-b32e-9c74d52debd1)
+
 
 Closing
 
