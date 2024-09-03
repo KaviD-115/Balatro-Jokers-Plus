@@ -118,9 +118,11 @@ SMODS.Joker{
   loc_txt = {
     name = 'Interstellar',
     text = {
-     '{C:green}#1# in #2#{} chance for each',
-     'played {C:attention}7{} to create a {C:dark_edition}Negative{}',
-     '{C:planet}Planet{} card when scored'
+     '{C:green}#1# in #2#{} chance for',
+     'each played {C:attention}7{} to',
+     'create a {C:dark_edition}Negative{}',
+     '{C:tarot}The High Priestess{}',
+     'card when scored'
         }
     },
     rarity = 2,
@@ -131,7 +133,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = 4},
+    config = {extra = 5},
     loc_vars = function(self, info_queue, card)
     return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
   end,
@@ -143,21 +145,15 @@ SMODS.Joker{
           G.E_MANAGER:add_event(Event({
                             trigger = 'before',
                             delay = 0.0,
-                            func = (function()
-                                local card = create_card('Planet', G.consumeables, nil, nil, nil, nil, nil, '8ba')
-                                card:set_edition('e_negative', true)
-                                card:add_to_deck()
-                                G.consumeables:emplace(card)
-                                G.GAME.consumeable_buffer = 0
-                                return true
-                            end)
-                        }))
-                        return {
-                            message = localize('k_plus_planet'),
-                            colour = G.C.SECONDARY_SET.Planet,
-                            card = card
-                               }
-                  end
+                            func = function() 
+                            local c = create_card(G.consumeables, nil, nil, nil, nil, nil, 'c_high_priestess', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
+                            return true 
+                        end})) 
+                  end 
              end
         end
    end,
@@ -287,9 +283,9 @@ SMODS.Joker{
   loc_txt = {
     name = 'PJA 1',
     text = {
-     "{C:green}#1# in #2#{} chance to create",
-			"a {C:tarot}Wheel of Fortune{} card when any",
-			"{C:attention}Booster Pack{} is opened",
+     "{C:green}#1# in #2#{} chance to create a",
+			"{C:tarot}Wheel of Fortune{} card when",
+			"any {C:attention}Booster Pack{} is opened",
                         "{C:inactive}(Must have room)"
          }
     },
@@ -363,7 +359,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {chips = 0, chip_gain = 12}},
+    config = {extra = {chips = 0, chip_gain = 10}},
     loc_vars = function(self, info_queue, card)
    return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
   end, 
