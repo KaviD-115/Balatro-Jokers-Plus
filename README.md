@@ -136,11 +136,16 @@ Hey guys I just wanted to let you know what I've been working on! So the PJA 10 
 
 
 -----
-![Screenshot 2024-08-31 200941](https://github.com/user-attachments/assets/2f9e232c-68bf-458f-b32e-9c74d52debd1)
+![Screenshot 2024-09-05 171129](https://github.com/user-attachments/assets/6f0d974b-2352-4ed2-b5c0-3489f28d5520)
+
+
+
+
 
 
 Closing
 
 All coding and joker artwork was done by me, (cover art for Github provided by my lovely wife) but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. I designed this mod for those (like myself) who love Vanilla Balatro but just want to experience it in new flavors without changing the feel and hopefully balance of the game too much. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible! 
+
 
 -----
