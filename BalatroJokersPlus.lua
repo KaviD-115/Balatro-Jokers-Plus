@@ -4,7 +4,7 @@
 --- MOD_AUTHOR: [KaviD]
 --- MOD_DESCRIPTION: Adds 6 Thematical Balatro Jokers
 --- BADGE_COLOR: 191970
---- DISPLAY_NAME: Balatro Jokers Plus
+--- DISPLAY_NAME: Balatro Jokers PLUS
 --- VERSION: 1.0.0
 --- PREFIX: PlusJokers
 
