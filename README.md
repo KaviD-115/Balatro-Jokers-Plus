@@ -29,18 +29,6 @@ Cost: $6
 
 -----
 
--- INTERSTELLAR --
-
-![InterstellarJokerArtplus](https://github.com/user-attachments/assets/4ff16e35-1bee-4ec8-86e0-eb1c47833196)
-
-Rarity: Uncommon 
-
-Cost: $7
-
-"1 in 4 chance for each played 7 to create a Negative Planet card when scored"
-
------
-
 -- THE LEMNISC8 --
 
 ![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7)
@@ -53,33 +41,33 @@ Cost: $8
 
 -----
 
+-- INTERSTELLAR --
+
+![InterstellarJokerArtplus](https://github.com/user-attachments/assets/4ff16e35-1bee-4ec8-86e0-eb1c47833196)
+
+Rarity: Uncommon 
+
+Cost: $7
+
+"1 in 5 chance for each played 7 to create a Negative "The High Priestess" card when scored"
+
+-----
+
 -- PJA 10 --
 
 ![PSA10JokerArt62x](https://github.com/user-attachments/assets/b12388c0-2a52-4fb5-9a6b-ad74e3f6d8c8)
 
-Rarity: Rare 
+Rarity: Uncommon 
 
-Cost: $10
+Cost: $6
 
-"1 in 3 chance to create an Aura card when any Booster Pack is opened (Must have room)"
-
------
-
--- PJA 1 --
-
-![PSAOneJokerArtplus](https://github.com/user-attachments/assets/cd32fc52-9ef4-4da7-ab91-378cf1c7be37)
-
-Rarity: Common
-
-Cost: $4
-
-"1 in 2 chance to create a Wheel of Fortune card when any Booster Pack is opened (Must have room)"
+"1 in 2 chance to create either a "Wheel of Fortune" or "Aura" card when any Booster Pack is opened (Must have room)"
 
 -----
 
 NEW CONTENT UPDATE! 
 
-- PACK 1 (Adds 4 new Jokers, expanding Joker count from 6 to 10) Jokers listed below:
+- PACK 1 (Adds 4 new Jokers) listed below:
 
 -----
 
@@ -131,6 +119,8 @@ Cost: Soul Card
 
 -----
 
+
+
 To Download, Follow the instructions in the image below:
 
 ![BJPHowToDownloadPrompt](https://github.com/user-attachments/assets/d90cceb5-b12a-4a1d-b012-bbd2f60794e9)
@@ -139,6 +129,13 @@ Then, place the file into your mod folder and Extract all files from the folder 
 
 -----
 
+
+9/5/24 UPDATE: 
+
+Hey guys I just wanted to let you know what I've been working on! So the PJA 10 Joker and PJA 1 Joker have officially been merged into one Joker! The PJA 1 Joker has been removed from the mod entirely as its effects have been added together alongside PJA 10's for a much more interesting/dynamic Joker! PJA 10's cost and Rarity have been updated to reflect this change! This version was my original vision for PJA 10 but somewhere along the way it's effects got split into two separate Jokers. Another update I made recently was a change to Interstellar's Ability. It now gives a "1 in 5 chance for each played 7 to create a Negative The High Priestess card when scored" The previous version of Interstellar affected game balance in a way I think was somewhat negative (no pun intended).  I wholeheartedly believe you guys will enjoy these changes! So we are down from 10 Jokers to 9 for the time being buuuuut.... Update Pack 2 is currently in the works!!! It will be a little while but I can't wait to show y'all what I've come up with! For now, if you've already downloaded the mod before today, you can redownload it for these updated features! Until next time! - KaviD 115
+
+
+-----
 ![Screenshot 2024-08-31 200941](https://github.com/user-attachments/assets/2f9e232c-68bf-458f-b32e-9c74d52debd1)
 
 
