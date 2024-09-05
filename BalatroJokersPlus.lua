@@ -221,21 +221,21 @@ SMODS.Joker{
   loc_txt = {
     name = 'PJA 10',
     text = {
-     "{C:green}#1# in #2#{} chance to create",
-			"an {C:spectral}Aura{} card when any",
-			"{C:attention}Booster Pack{} is opened",
+     "{C:green}#1# in #2#{} chance to create either",
+			"a {C:tarot}Wheel of Fortune{} or {C:spectral}Aura{} card", 
+                        "when any {C:attention}Booster Pack{} is opened",
                         "{C:inactive}(Must have room)"
          }
     },
-    rarity = 3,
+    rarity = 2,
     atlas = "jokersplus2", pos = {x = 1, y = 0},
-    cost = 10,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
-    blueprint_compat = false,
+    blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = 3},
+    config = {extra = 4,},
     -- Sets the sprite and hitbox
     set_ability = function(self, card, initial, delay_sprites)
         local w_scale, h_scale = 81/71, 137/95
@@ -259,11 +259,12 @@ SMODS.Joker{
     end,
 
     loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal,card.ability.extra}}
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra / 2,}}
   end,
     calculate = function(self, card, context)
       if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-        if pseudorandom('PJA') < G.GAME.probabilities.normal/card.ability.extra then
+        local poll = pseudorandom(pseudoseed('pjaten'))
+      if poll  < G.GAME.probabilities.normal / card.ability.extra then
           return {
           G.E_MANAGER:add_event(Event({
                         func = function() 
@@ -271,61 +272,9 @@ SMODS.Joker{
                             c:add_to_deck()
                             G.consumeables:emplace(c)
                             return true 
-                        end})) 
-                }         
-            end
-        end
-    end,
-}
-
-SMODS.Joker{
-  key = 'pjaone',
-  loc_txt = {
-    name = 'PJA 1',
-    text = {
-     "{C:green}#1# in #2#{} chance to create a",
-			"{C:tarot}Wheel of Fortune{} card when",
-			"any {C:attention}Booster Pack{} is opened",
-                        "{C:inactive}(Must have room)"
-         }
-    },
-    rarity = 1,
-    atlas = "jokersplus2",pos = {x = 0, y = 0}, 
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    blueprint_compat = false,
-    perishable_compat = true,
-    config = {extra = 2},
-    -- Sets the sprite and hitbox
-    set_ability = function(self, card, initial, delay_sprites)
-        local w_scale, h_scale = 81/71, 137/95
-
-        card.T.h = card.T.h * h_scale
-        card.T.w = card.T.w * w_scale
-    end,
-
-    set_sprites = function(self, card, front)
-        local w_scale, h_scale = 71/71, 95/95
-
-        card.children.center.scale.y = card.children.center.scale.y * h_scale
-        card.children.center.scale.x = card.children.center.scale.x * w_scale
-    end,
-
-    load = function(self, card, card_table, other_card)
-        local w_scale, h_scale = 81/71, 137/95
-        
-        card.T.h = card.T.h * h_scale
-        card.T.w = card.T.w * w_scale
-    end,
-
-    loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal,card.ability.extra}}
-  end,
-    calculate = function(self, card, context)
-      if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-        if pseudorandom('PJAone') < G.GAME.probabilities.normal/card.ability.extra then
+                        end}))
+                 }
+        elseif poll < (G.GAME.probabilities.normal * 2) / card.ability.extra then
           return {
           G.E_MANAGER:add_event(Event({
                         func = function() 
@@ -334,7 +283,7 @@ SMODS.Joker{
                             G.consumeables:emplace(c)
                             return true 
                         end})) 
-                }         
+                }              
             end
         end
     end,
