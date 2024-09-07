@@ -1,7 +1,7 @@
 ![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
 
 
-Balatro Jokers Plus adds 10 Jokers to your game that aim to look and feel Vanilla, but add NEW ways to play!
+Balatro Jokers Plus adds several Jokers to your game that aim to look and feel Vanilla, but add NEW ways to play!
 
 -----
 
@@ -79,7 +79,7 @@ Rarity: Common
 
 Cost: $5
 
-"Gains 12 chips if played hand contains a Flush (Currently +0 chips)"
+"Gains 10 chips if played hand contains a Flush (Currently +0 chips)"
 
 -----
 
