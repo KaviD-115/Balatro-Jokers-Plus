@@ -1,8 +1,5 @@
 ![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
 
-
-Balatro Jokers Plus adds several Jokers to your game that aim to look and feel Vanilla, but add NEW ways to play!
-
 -----
 
 -- PHANTOM --
@@ -65,12 +62,6 @@ Cost: $6
 
 -----
 
-NEW CONTENT UPDATE! 
-
-- PACK 1 (Adds 4 new Jokers) listed below:
-
------
-
 -- PLUMBER --
 
 ![PlumberJokerArt7X2](https://github.com/user-attachments/assets/33c39395-6592-4716-9101-101c5a6b06aa)
@@ -125,27 +116,9 @@ To Download, Follow the instructions in the image below:
 
 ![BJPHowToDownloadPrompt](https://github.com/user-attachments/assets/d90cceb5-b12a-4a1d-b012-bbd2f60794e9)
 
-Then, place the file into your mod folder and Extract all files from the folder and you're all set!
-
------
-
-
-9/5/24 UPDATE: 
-
-Hey guys I just wanted to let you know what I've been working on! So the PJA 10 Joker and PJA 1 Joker have officially been merged into one Joker! The PJA 1 Joker has been removed from the mod entirely as its effects have been added together alongside PJA 10's for a much more interesting/dynamic Joker! PJA 10's cost and Rarity have been updated to reflect this change! This version was my original vision for PJA 10 but somewhere along the way it's effects got split into two separate Jokers. Another update I made recently was a change to Interstellar's Ability. It now gives a "1 in 5 chance for each played 7 to create a Negative The High Priestess card when scored" The previous version of Interstellar affected game balance in a way I think was somewhat negative (no pun intended).  I wholeheartedly believe you guys will enjoy these changes! So we are down from 10 Jokers to 9 for the time being buuuuut.... Update Pack 2 is currently in the works!!! It will be a little while but I can't wait to show y'all what I've come up with! For now, if you've already downloaded the mod before today, you can redownload it for these updated features! Until next time! - KaviD 115
-
+Then, place the file into your mod folder and Extract all files from the folder
 
 -----
 ![Screenshot 2024-09-05 171129](https://github.com/user-attachments/assets/6f0d974b-2352-4ed2-b5c0-3489f28d5520)
-
-
-
-
-
-
-Closing
-
-All coding and joker artwork was done by me, (cover art for Github provided by my lovely wife) but a huge thank you to members of the Balatro Modding Community for answering all of my questions along the way. This absolutely would never have happened without you guys. I designed this mod for those (like myself) who love Vanilla Balatro but just want to experience it in new flavors without changing the feel and hopefully balance of the game too much. Feel free to PM me "@KaviD 115" on Discord if you want to discuss anything about this mod, let me know what you think! But I hope you all enjoy this mod as I've put my heart into making these Jokers. I look forward to improving it as much as possible! 
-
 
 -----
