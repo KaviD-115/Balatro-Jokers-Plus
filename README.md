@@ -62,6 +62,8 @@ Cost: $6
 
 -----
 
+*****NEW with Update Pack 1*****
+
 -- PLUMBER --
 
 ![PlumberJokerArt7X2](https://github.com/user-attachments/assets/33c39395-6592-4716-9101-101c5a6b06aa)
@@ -106,11 +108,35 @@ Rarity: Legendary
 
 Cost: Soul Card
 
-"When Blind is selected, destroy Joker to the right and permanently gain X0.75 Mult (Currently X1 Mult)"
+"When Blind is selected, destroy Joker to the right and permanently gain X0.75 Mult (Currently: X1 Mult)"
 
 -----
 
+*****NEW with Update Pack 2*****
 
+-- THE PICKAXE --
+
+![PickaxeJokerArt142x](https://github.com/user-attachments/assets/4f49b056-bddd-4f3d-892b-d3d913dac240)
+
+Rarity: Rare
+
+Cost: $8
+
+"Each Diamond card discarded has a 1 in 4 chance to be destroyed and permanently increase Blind Payout by $1 (Currently: $0)"
+
+-----
+
+-- RAY GUN --
+
+![Raygun935Joker172x](https://github.com/user-attachments/assets/1aa1f4cf-9b11-4f68-b13e-1d425c50606e)
+
+Rarity: Uncommon
+
+Cost: $6
+
+"Each played 9, 3, or 5 gives X1.15 Mult when scored"
+
+-----
 
 To Download, Follow the instructions in the image below:
 
@@ -119,6 +145,6 @@ To Download, Follow the instructions in the image below:
 Then, place the file into your mod folder and Extract all files from the folder
 
 -----
-![Screenshot 2024-09-05 171129](https://github.com/user-attachments/assets/6f0d974b-2352-4ed2-b5c0-3489f28d5520)
+![Screenshot 2024-09-16 015453](https://github.com/user-attachments/assets/11992720-ace3-4dac-a332-cbab85fa314a)
 
 -----
