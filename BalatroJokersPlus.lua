@@ -30,7 +30,12 @@ SMODS.Atlas({
     py = 95,
 })
 
-
+SMODS.Atlas({ 
+    key = "jokersplusudatepack2",
+    path = "jokersplusudatepack2.png", 
+    px = 71,
+    py = 95,
+})
 
 SMODS.Joker{
   key = "sixandstones",
@@ -428,6 +433,54 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
+  key = 'thepickaxe',
+  loc_txt = {
+    name = 'The Pickaxe',
+    text = {
+     "Each {C:diamonds}Diamond{} card discarded",
+                    "has a {C:green}#1# in #2#{} chance to be", 
+                    "destroyed and permanently",
+                    "increase {C:attention}Blind Payout{} by {C:money}$#3#{}",
+                    "{C:inactive}(Currently {C:money}$#4#{C:inactive})",
+         }
+    },
+    rarity = 3,
+    atlas = "jokersplusudatepack2", pos = {x = 0, y = 0},
+    cost = 8,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = false,
+    perishable_compat = false,
+    config = {extra = {odds = 4, money_add = 1, money = 0,}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.money_add, card.ability.extra.money}}
+    end,
+    calculate = function(self, card, context)
+      if context.discard and
+            not context.other_card.debuff then            
+        if context.other_card:is_suit('Diamonds') and not context.blueprint then
+            if pseudorandom('thepickaxe') < G.GAME.probabilities.normal / card.ability.extra.odds then
+               card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_add
+              return {
+                play_sound('whoosh1', math.random()*0.1 + 0.6,0.3),
+                message = "Mined",
+                colour = G.C.ORANGE,
+                remove = true,
+                card = card
+            }
+           end
+        end
+      end
+    end,
+calc_dollar_bonus = function(self, card)
+    local bonus = card.ability.extra.money
+    if bonus > 0 then return bonus
+    end
+end
+}
+
+SMODS.Joker{
   key = 'dagonet',
   loc_txt = {
     name = 'Dagonet',
@@ -478,4 +531,37 @@ SMODS.Joker{
                           }
             end
     end,
+}
+
+SMODS.Joker{
+  key = 'raygun',
+  loc_txt = {
+    name = 'Ray Gun',
+    text = {
+     "Each played {C:attention}9,{} {C:attention}3, or {C:attention}5",
+                    "gives {X:mult,C:white}X#1#{} Mult when scored",
+         }
+    },
+    rarity = 2,
+    atlas = "jokersplusudatepack2", pos = {x = 1, y = 0},
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = true,
+    config = {extra = {x_mult = 1.15}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.x_mult,}}
+    end,
+    calculate = function(self, card, context)
+      if context.individual and context.cardarea == G.play then
+            if context.other_card:get_id() == 9 or context.other_card:get_id() == 3 or context.other_card:get_id() == 5 then
+              return {
+                     x_mult = card.ability.extra.x_mult,
+                     card = card
+                    }
+            end
+      end
+end,
 }
