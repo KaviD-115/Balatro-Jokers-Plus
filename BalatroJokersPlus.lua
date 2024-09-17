@@ -538,7 +538,7 @@ SMODS.Joker{
   loc_txt = {
     name = 'Ray Gun',
     text = {
-     "Each played {C:attention}9,{} {C:attention}3, or {C:attention}5",
+     "Each played {C:attention}9{}, {C:attention}3{}, or {C:attention}5{}",
                     "gives {X:mult,C:white}X#1#{} Mult when scored",
          }
     },
