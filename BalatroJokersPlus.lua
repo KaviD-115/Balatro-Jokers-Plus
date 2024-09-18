@@ -132,7 +132,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplus", pos = {x = 3, y = 0},
-    cost = 7,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
