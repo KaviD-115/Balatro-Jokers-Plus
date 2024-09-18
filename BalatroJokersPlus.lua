@@ -130,7 +130,7 @@ SMODS.Joker{
      'card when scored'
         }
     },
-    rarity = 2,
+    rarity = 1,
     atlas = "jokersplus", pos = {x = 3, y = 0},
     cost = 7,
     unlocked = true,
