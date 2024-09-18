@@ -42,9 +42,9 @@ Cost: $8
 
 ![InterstellarJokerArtplus](https://github.com/user-attachments/assets/4ff16e35-1bee-4ec8-86e0-eb1c47833196)
 
-Rarity: Uncommon 
+Rarity: Common 
 
-Cost: $7
+Cost: $5
 
 "1 in 5 chance for each played 7 to create a Negative "The High Priestess" card when scored"
 
