@@ -31,8 +31,8 @@ SMODS.Atlas({
 })
 
 SMODS.Atlas({ 
-    key = "jokersplusudatepack2",
-    path = "jokersplusudatepack2.png", 
+    key = "jokersplusupdatepack2",
+    path = "jokersplusupdatepack2.png", 
     px = 71,
     py = 95,
 })
@@ -445,7 +445,7 @@ SMODS.Joker{
          }
     },
     rarity = 3,
-    atlas = "jokersplusudatepack2", pos = {x = 0, y = 0},
+    atlas = "jokersplusupdatepack2", pos = {x = 0, y = 0},
     cost = 8,
     unlocked = true,
     discovered = true,
@@ -543,7 +543,7 @@ SMODS.Joker{
          }
     },
     rarity = 2,
-    atlas = "jokersplusudatepack2", pos = {x = 1, y = 0},
+    atlas = "jokersplusupdatepack2", pos = {x = 1, y = 0},
     cost = 6,
     unlocked = true,
     discovered = true,
