@@ -72,7 +72,7 @@ Rarity: Common
 
 Cost: $5
 
-"Gains 10 chips if played hand contains a Flush (Currently +0 chips)"
+"Gains +10 chips if played hand contains a Flush (Currently +0 chips)"
 
 -----
 
@@ -128,7 +128,8 @@ Cost: $8
 
 -- RAY GUN --
 
-![Raygun935Joker172x](https://github.com/user-attachments/assets/1aa1f4cf-9b11-4f68-b13e-1d425c50606e)
+![Raygun935Joker192x](https://github.com/user-attachments/assets/945edc00-c1e6-4893-a9a4-d10308180807)
+
 
 Rarity: Uncommon
 
