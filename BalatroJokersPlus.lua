@@ -1,11 +1,11 @@
 --- STEAMODDED HEADER
---- MOD_NAME: BalatroJokersPlus
---- MOD_ID: BalatroJokersPlus
+--- MOD_NAME: Balatro Jokers PLUS
+--- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
 --- MOD_DESCRIPTION: Adds several Jokers to your game that aim to look and feel Vanilla.
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.0.0
+--- VERSION: 1.2.1
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -191,7 +191,7 @@ SMODS.Joker{
   end,
     calculate = function(self, card, context)
       if context.individual and context.cardarea == G.play then
-        if context.other_card:get_id() == 8 then
+        if context.other_card:get_id() == 8 and not context.blueprint then
           card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
       return {
         card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT, instant = true}),
@@ -313,7 +313,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {chips = 0, chip_gain = 10}},
+    config = {extra = {chips = 0, chip_gain = 12}},
     loc_vars = function(self, info_queue, card)
    return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
   end, 
