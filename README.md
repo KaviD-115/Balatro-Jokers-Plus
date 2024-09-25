@@ -72,7 +72,7 @@ Rarity: Common
 
 Cost: $5
 
-"Gains +10 chips if played hand contains a Flush (Currently +0 chips)"
+"Gains +12 chips if played hand contains a Flush (Currently +0 chips)"
 
 -----
 
