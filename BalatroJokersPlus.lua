@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds several Jokers to your game that aim to look and feel Vanilla.
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.2.1
+--- VERSION: 1.3.0
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -36,6 +36,14 @@ SMODS.Atlas({
     px = 71,
     py = 95,
 })
+
+SMODS.Atlas({ 
+    key = "jokersplusupdatepack3",
+    path = "jokersplusupdatepack3.png", 
+    px = 71,
+    py = 95,
+})
+
 
 SMODS.Joker{
   key = "sixandstones",
@@ -538,13 +546,13 @@ SMODS.Joker{
   loc_txt = {
     name = 'Ray Gun',
     text = {
-     "Each played {C:attention}9{}, {C:attention}3{}, or {C:attention}5{}",
-                    "gives {X:mult,C:white}X#1#{} Mult when scored",
+     "Each played {C:attention}9{}, {C:attention}3{}, or {C:attention}5{} gives",
+                    "{X:mult,C:white}X#1#{} Mult when scored",
          }
     },
-    rarity = 2,
+    rarity = 1,
     atlas = "jokersplusupdatepack2", pos = {x = 1, y = 0},
-    cost = 6,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -563,5 +571,88 @@ SMODS.Joker{
                     }
             end
       end
+end,
+}
+
+SMODS.Joker{
+  key = 'mmx',
+  loc_txt = {
+    name = 'Mega Man X',
+    text = {
+     "This Joker Gains {X:mult,C:white}X#1#{} Mult",
+                    "when exactly {C:attention}1{} card",
+                    "is {C:attention}played{} or {C:attention}discarded{}",
+                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
+         }
+    },
+    rarity = 2,
+    atlas = "jokersplusupdatepack3", pos = {x = 1, y = 0},
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {Xmult_add = 0.1, Xmult = 1}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
+    end,
+    calculate = function(self, card, context)
+      if context.discard then
+         if #context.full_hand == 1 then
+               card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
+               G.E_MANAGER:add_event(Event({
+                func = function()
+                  card:juice_up(0.7)
+                  card_eval_status_text(card,'extra',nil, nil, nil,{message = "PEW!", colour = G.C.BLUE, delay = 0.45,})
+          return true; end}))
+         end
+      elseif context.joker_main and context.cardarea == G.jokers then
+            if context.full_hand and #context.full_hand == 1 then
+               card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
+            end
+      end
+          if context.joker_main and card.ability.extra.Xmult > 1 then
+        return {
+          message = localize{type='variable',key='a_xmult',vars={card.ability.extra.Xmult}},
+          Xmult_mod = card.ability.extra.Xmult,
+        }
+          end
+end,
+}
+
+SMODS.Joker{
+  key = 'attachecase',
+  loc_txt = {
+    name = 'Attache Case',
+    text = {
+     "{C:green}#1# in #2#{} chance to permanently",
+                    "gain {C:dark_edition}+1{} Joker Slot whenever",
+                    "a boss blind is defeated",
+         }
+    },
+    rarity = 3,
+    atlas = "jokersplusupdatepack3", pos = {x = 0, y = 0},
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = 2},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
+  end,
+    calculate = function(self, card, context)
+    if context.end_of_round and not context.individual and not context.repetition and not context.blueprint and G.GAME.blind.boss and not self.gone then
+     if pseudorandom('Whatareyasellin') < G.GAME.probabilities.normal/card.ability.extra then
+      G.jokers.config.card_limit = G.jokers.config.card_limit + 1
+       return {
+         message = 'What are ya buyin?',
+         colour = G.C.PURPLE,
+         delay = 0.45, 
+            } 
+     end
+    end
 end,
 }
