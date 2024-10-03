@@ -628,7 +628,7 @@ SMODS.Joker{
     text = {
      "{C:green}#1# in #2#{} chance to permanently",
                     "gain {C:dark_edition}+1{} Joker Slot whenever",
-                    "a {C:attention}boss blind{} is defeated",
+                    "a {C:attention}Boss Blind{} is defeated",
          }
     },
     rarity = 3,
