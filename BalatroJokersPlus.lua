@@ -628,12 +628,12 @@ SMODS.Joker{
     text = {
      "{C:green}#1# in #2#{} chance to permanently",
                     "gain {C:dark_edition}+1{} Joker Slot whenever",
-                    "a boss blind is defeated",
+                    "a {C:attention}boss blind{} is defeated",
          }
     },
     rarity = 3,
     atlas = "jokersplusupdatepack3", pos = {x = 0, y = 0},
-    cost = 6,
+    cost = 8,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
