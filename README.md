@@ -141,7 +141,7 @@ Cost: $6
 
 *****NEW with Update Pack 3*****
 
--- MEAGA MAN X --
+-- MEGA MAN X --
 
 ![MegaManXJokerArt62X](https://github.com/user-attachments/assets/b20d55f4-6ba7-4ba2-97de-09ca3fdb35dc)
 
