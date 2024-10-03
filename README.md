@@ -161,7 +161,7 @@ Rarity: Rare
 
 Cost: $8
 
-"1 in 2 chance to permanently gain +1 Joker Slot whenever a boss blind is defeated"
+"1 in 2 chance to permanently gain +1 Joker Slot whenever a Boss Blind is defeated"
 
 -----
 
@@ -172,7 +172,9 @@ To Download, Follow the instructions in the image below:
 Then, place the file into your mod folder and Extract all files from the folder
 
 -----
-![Screenshot 2024-09-16 015453](https://github.com/user-attachments/assets/11992720-ace3-4dac-a332-cbab85fa314a)
+![Screenshot 2024-10-03 180051](https://github.com/user-attachments/assets/555412dd-6f0f-4396-99aa-35764d00477d)
+
+
 
 Joker Artwork and Coding by me (KaviD 115)
 
