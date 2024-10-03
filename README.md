@@ -131,7 +131,7 @@ Cost: $8
 ![Raygun935Joker192x](https://github.com/user-attachments/assets/945edc00-c1e6-4893-a9a4-d10308180807)
 
 
-Rarity: Uncommon
+Rarity: Common
 
 Cost: $6
 
