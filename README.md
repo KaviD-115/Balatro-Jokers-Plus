@@ -139,6 +139,32 @@ Cost: $6
 
 -----
 
+*****NEW with Update Pack 3*****
+
+-- MEAGA MAN X --
+
+![MegaManXJokerArt62X](https://github.com/user-attachments/assets/b20d55f4-6ba7-4ba2-97de-09ca3fdb35dc)
+
+Rarity: Uncommon
+
+Cost: $6
+
+"This Joker Gains X0.1 Mult when exactly 1 card is played or discarded (Currently: X1 Mult)"
+
+-----
+
+-- ATTACHE CASE --
+
+![REAttacheCaseJokerArt102X](https://github.com/user-attachments/assets/8c0ac146-7e3b-4a0a-9c1f-464040be74c6)
+
+Rarity: Rare
+
+Cost: $8
+
+"1 in 2 chance to permanently gain +1 Joker Slot whenever a boss blind is defeated"
+
+-----
+
 To Download, Follow the instructions in the image below:
 
 ![BJPHowToDownloadPrompt](https://github.com/user-attachments/assets/d90cceb5-b12a-4a1d-b012-bbd2f60794e9)
