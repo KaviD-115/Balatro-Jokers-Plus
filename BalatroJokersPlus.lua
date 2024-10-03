@@ -598,7 +598,7 @@ SMODS.Joker{
     return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
     end,
     calculate = function(self, card, context)
-      if context.discard then
+      if context.discard and not context.blueprint then
          if #context.full_hand == 1 then
                card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
                G.E_MANAGER:add_event(Event({
@@ -608,7 +608,7 @@ SMODS.Joker{
           return true; end}))
          end
       elseif context.joker_main and context.cardarea == G.jokers then
-            if context.full_hand and #context.full_hand == 1 then
+            if context.full_hand and #context.full_hand == 1 and not context.blueprint then
                card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
             end
       end
