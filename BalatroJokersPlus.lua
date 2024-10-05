@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds several Jokers to your game that aim to look and feel Vanilla.
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.3.0
+--- VERSION: 1.3.1
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -202,7 +202,7 @@ SMODS.Joker{
         if context.other_card:get_id() == 8 and not context.blueprint then
           card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
       return {
-        card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT, instant = true}),
+        card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT,}),
         card = card
             }
         end
@@ -579,45 +579,44 @@ SMODS.Joker{
   loc_txt = {
     name = 'Mega Man X',
     text = {
-     "This Joker Gains {X:mult,C:white}X#1#{} Mult",
-                    "when exactly {C:attention}1{} card",
-                    "is {C:attention}played{} or {C:attention}discarded{}",
-                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
+     "Generate {C:attention}2{} copies of a",
+                    "random {C:tarot}Tarot{} card when",
+                    "{C:attention}Boss Blind{} is defeated",
+                    "{C:inactive}(Requires only 1 open slot)"
          }
     },
-    rarity = 2,
+    rarity = 1,
     atlas = "jokersplusupdatepack3", pos = {x = 1, y = 0},
-    cost = 6,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
-    blueprint_compat = true,
-    perishable_compat = false,
-    config = {extra = {Xmult_add = 0.1, Xmult = 1}},
-    loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
-    end,
+    blueprint_compat = false,
+    perishable_compat = true,
     calculate = function(self, card, context)
-      if context.discard and not context.blueprint then
-         if #context.full_hand == 1 then
-               card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
-               G.E_MANAGER:add_event(Event({
-                func = function()
-                  card:juice_up(0.7)
-                  card_eval_status_text(card,'extra',nil, nil, nil,{message = "PEW!", colour = G.C.BLUE, delay = 0.45,})
-          return true; end}))
-         end
-      elseif context.joker_main and context.cardarea == G.jokers then
-            if context.full_hand and #context.full_hand == 1 and not context.blueprint then
-               card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
-            end
-      end
-          if context.joker_main and card.ability.extra.Xmult > 1 then
-        return {
-          message = localize{type='variable',key='a_xmult',vars={card.ability.extra.Xmult}},
-          Xmult_mod = card.ability.extra.Xmult,
-        }
-          end
+        if context.end_of_round and not context.individual and not context.repetition and not context.blueprint and G.GAME.blind.boss and not self.gone then
+          if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1 
+				G.E_MANAGER:add_event(Event({
+					trigger = 'before',
+					delay = 0.0,
+					func = (function()
+							local _card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'mmx')
+							_card:add_to_deck()
+							G.consumeables:emplace(_card)
+							G.GAME.consumeable_buffer = 0
+                                                        local _card2 = copy_card(_card)
+                                                        _card2:add_to_deck()
+                                                        G.consumeables:emplace(_card2) 
+						return true
+					end)}))
+				return {
+					message = localize('k_plus_tarot'),
+					colour = G.C.SECONDARY_SET.Tarot,
+					card = card
+				}
+	  end
+       end
 end,
 }
 
