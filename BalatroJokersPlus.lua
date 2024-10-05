@@ -611,8 +611,8 @@ SMODS.Joker{
 						return true
 					end)}))
 				return {
-					message = localize('k_plus_tarot'),
-					colour = G.C.SECONDARY_SET.Tarot,
+					message = ('YOU GET. . .'),
+					colour = G.C.BLUE,
 					card = card
 				}
 	  end
