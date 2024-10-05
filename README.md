@@ -145,11 +145,11 @@ Cost: $6
 
 ![MegaManXJokerArt62X](https://github.com/user-attachments/assets/b20d55f4-6ba7-4ba2-97de-09ca3fdb35dc)
 
-Rarity: Uncommon
+Rarity: Common
 
-Cost: $6
+Cost: $5
 
-"This Joker Gains X0.1 Mult when exactly 1 card is played or discarded (Currently: X1 Mult)"
+"Generate 2 Copies of a random Tarot card when Boss Blind is defeated"
 
 -----
 
