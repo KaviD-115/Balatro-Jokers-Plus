@@ -133,7 +133,7 @@ Cost: $8
 
 Rarity: Common
 
-Cost: $6
+Cost: $5
 
 "Each played 9, 3, or 5 gives X1.15 Mult when scored"
 
