@@ -419,7 +419,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplusupdatepack1", pos = {x = 2, y = 0},
-    cost = 5,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
