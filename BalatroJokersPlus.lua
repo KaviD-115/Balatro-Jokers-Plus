@@ -740,7 +740,7 @@ SMODS.Joker{
     cost = 10,
     unlocked = true,
     discovered = true,
-    eternal_compat = true,
+    eternal_compat = false,
     blueprint_compat = false,
     perishable_compat = false,
     calculate = function(self, card, context)
