@@ -198,8 +198,8 @@ To Download, Follow the instructions in the image below:
 Then, place the file into your mod folder and Extract all files from the folder
 
 -----
-![Screenshot 2024-10-03 180051](https://github.com/user-attachments/assets/555412dd-6f0f-4396-99aa-35764d00477d)
 
+![Screenshot 2024-10-11 181654](https://github.com/user-attachments/assets/36950753-0506-46c7-b130-563e0d53f18e)
 
 Joker Artwork and Coding by me (KaviD 115)
 
