@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds several Jokers to your game that aim to look and feel Vanilla.
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.3.1
+--- VERSION: 1.4.0
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -40,6 +40,13 @@ SMODS.Atlas({
 SMODS.Atlas({ 
     key = "jokersplusupdatepack3",
     path = "jokersplusupdatepack3.png", 
+    px = 71,
+    py = 95,
+})
+
+SMODS.Atlas({ 
+    key = "jokersplusupdatepack4",
+    path = "jokersplusupdatepack4.png", 
     px = 71,
     py = 95,
 })
@@ -413,8 +420,8 @@ SMODS.Joker{
   loc_txt = {
     name = 'Wild West',
     text = {
-     "Retrigger all",
-     "{C:attention}Wild Cards{} played"
+     "Retrigger all played",
+     "{C:attention}Wild{} and {C:attention}Stone Cards{}",
         }
     },
     rarity = 1,
@@ -425,11 +432,10 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = true,
-    enhancement_gate = 'm_wild',
     config = {extra = {repetitions = 1}},
     calculate = function(self, card, context)
             if context.cardarea == G.play and context.repetition and not context.repetition_only then
-                if context.other_card.ability.effect == "Wild Card" then
+                if context.other_card.ability.effect == "Wild Card" or context.other_card.ability.effect == "Stone Card" then
         return {
           message = 'Again!',
           repetitions = card.ability.extra.repetitions,
@@ -653,5 +659,101 @@ SMODS.Joker{
             } 
      end
     end
+end,
+}
+
+SMODS.Joker{
+  key = "octane",
+  loc_txt = {
+    name = 'Octane',
+    text = {
+            "{C:mult}+#1#{} Mult",
+                    "Destroyed if Blind",
+                    "is defeated on the", 
+                    "{C:attention}final hand{} of round",
+        }
+    },
+    rarity = 1,
+    atlas = "jokersplusupdatepack4", pos = {x = 1, y = 0},
+    cost = 5,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    blueprint_compat = true,
+    perishable_compat = true,
+    config = {extra = {mult = 15}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.mult,}}
+ end,
+    calculate = function(self, card, context)
+if context.joker_main then
+        return {
+                mult_mod = card.ability.extra.mult,
+                message = localize{type = 'variable', key = 'a_mult', vars = {card.ability.extra.mult}}
+            }
+end
+if context.cardarea == G.jokers then
+              if context.after and G.GAME.chips + hand_chips * mult > G.GAME.blind.chips and not context.blueprint then
+                  if G.GAME.blind and G.GAME.current_round.hands_left == 0 then  
+				G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('tarot1')
+                            card.T.r = -0.2
+                            card:juice_up(0.3, 0.4)
+                            card.states.drag.is = true
+                            card.children.center.pinch.x = true
+                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                                func = function()
+                                        G.jokers:remove_card(card)
+                                        card:remove()
+                                        card = card
+                                    return true; end})) 
+                            return true
+                        end
+                    })) 
+                    return {
+                        message = ('What a save!'),
+                        colour = G.C.ORANGE
+                    }
+
+	  end
+       end
+   end
+end,
+}
+
+
+SMODS.Joker{
+  key = "vaultboy",
+  loc_txt = {
+    name = 'Vault Boy',
+    text = {
+            "Sell to create a", 
+                    "{C:dark_edition}Negative{} {C:spectral}Soul{} card",
+                    "{C:inactive{C:money}Vault-Tec{} {C:inactive}approved!",
+                    "{C:inactive}(-1 Joker Slot)",
+         }
+    },
+    rarity = 3,
+
+    atlas = "jokersplusupdatepack4", pos = {x = 0, y = 0},
+    cost = 10,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = false,
+    perishable_compat = false,
+    calculate = function(self, card, context)
+        if context.selling_self and not context.blueprint then
+       G.jokers.config.card_limit = G.jokers.config.card_limit - 1
+                    G.E_MANAGER:add_event(Event({
+                        func = function()  
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_soul', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            return true
+                        end}))
+        end
 end,
 }
