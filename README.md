@@ -165,6 +165,32 @@ Cost: $8
 
 -----
 
+*****NEW with Update Pack 4*****
+
+-- OCTANE --
+
+![RocketLeagueJokerArt112x](https://github.com/user-attachments/assets/3dcd2214-ae09-4c16-a04d-1c2ec87031ad)
+
+Rarity: Common
+
+Cost: $5
+
+"+15 Mult, Destroyed if Blind is defeated on the final hand of round"
+
+-----
+
+-- VAULT BOY --
+
+![VaultBoyJokerArt102x](https://github.com/user-attachments/assets/b9f34b29-a3cc-4f53-a483-509a2e6e1d45)
+
+Rarity: Rare
+
+Cost: $10
+
+"Sell to create a Negative Soul card, Vault-Tec approved! (-1 Joker Slot)"
+
+-----
+
 To Download, Follow the instructions in the image below:
 
 ![BJPHowToDownloadPrompt](https://github.com/user-attachments/assets/d90cceb5-b12a-4a1d-b012-bbd2f60794e9)
@@ -173,7 +199,6 @@ Then, place the file into your mod folder and Extract all files from the folder
 
 -----
 ![Screenshot 2024-10-03 180051](https://github.com/user-attachments/assets/555412dd-6f0f-4396-99aa-35764d00477d)
-
 
 
 Joker Artwork and Coding by me (KaviD 115)
