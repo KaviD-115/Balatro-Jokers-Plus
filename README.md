@@ -96,7 +96,7 @@ Rarity: Common
 
 Cost: $4
 
-"Retrigger all Wild Cards played" [Enters the Joker pool when your deck contains a Wild Card]
+"Retrigger all played Wild and Stone Cards"
 
 -----
 
