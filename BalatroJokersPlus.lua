@@ -2,7 +2,7 @@
 --- MOD_NAME: Balatro Jokers PLUS
 --- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
---- MOD_DESCRIPTION: Adds several Jokers to your game that aim to look and feel Vanilla.
+--- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
 --- VERSION: 1.4.0
