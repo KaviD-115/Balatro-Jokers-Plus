@@ -424,9 +424,9 @@ SMODS.Joker{
      "{C:attention}Wild{} and {C:attention}Stone Cards{}",
         }
     },
-    rarity = 1,
+    rarity = 2,
     atlas = "jokersplusupdatepack1", pos = {x = 2, y = 0},
-    cost = 4,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -681,7 +681,7 @@ SMODS.Joker{
     eternal_compat = false,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = {mult = 15}},
+    config = {extra = {mult = 16}},
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.mult,}}
  end,
