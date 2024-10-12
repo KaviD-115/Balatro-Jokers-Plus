@@ -92,9 +92,9 @@ Cost: $6
 
 ![WildWestJokerArt7X2](https://github.com/user-attachments/assets/5ecd7709-db26-4b93-969d-ce557d3bb5e6)
 
-Rarity: Common
+Rarity: Uncommon
 
-Cost: $4
+Cost: $5
 
 "Retrigger all played Wild and Stone Cards"
 
@@ -175,7 +175,7 @@ Rarity: Common
 
 Cost: $5
 
-"+15 Mult, Destroyed if Blind is defeated on the final hand of round"
+"+16 Mult, Destroyed if Blind is defeated on the final hand of round"
 
 -----
 
