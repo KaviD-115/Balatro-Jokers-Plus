@@ -46,7 +46,7 @@ Rarity: Common
 
 Cost: $5
 
-"1 in 5 chance for each played 7 to create a Negative "The High Priestess" card when scored"
+"1 in 7 chance for each played 7 to create a Black Hole when scored"
 
 -----
 
@@ -199,7 +199,8 @@ Then, place the file into your mod folder and Extract all files from the folder
 
 -----
 
-![Screenshot 2024-10-11 181654](https://github.com/user-attachments/assets/36950753-0506-46c7-b130-563e0d53f18e)
+![Screenshot 2024-10-13 042616](https://github.com/user-attachments/assets/1882ddf5-48bb-4fa4-9383-fd6cf7310b93)
+
 
 Joker Artwork and Coding by me (KaviD 115)
 
