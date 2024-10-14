@@ -71,7 +71,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {Xmult_add = 1, Xmult = 1}},
+    config = {extra = {Xmult_add = 0.75, Xmult = 1}},
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
   end,
@@ -143,15 +143,15 @@ SMODS.Joker{
      '{C:spectral}Black Hole{} when scored',
         }
     },
-    rarity = 1,
+    rarity = 3,
     atlas = "jokersplus", pos = {x = 3, y = 0},
-    cost = 5,
+    cost = 7,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = 7},
+    config = {extra = 4},
     loc_vars = function(self, info_queue, card)
     return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
   end,
@@ -189,9 +189,9 @@ SMODS.Joker{
 			"{C:mult}+#1#{C:inactive} Mult / {C:chips}+#2# {C:inactive}Chips)",
          }
     },
-    rarity = 3,
+    rarity = 2,
     atlas = "jokersplus", pos = {x = 0, y = 0},
-    cost = 8,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
