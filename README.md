@@ -10,7 +10,7 @@ Rarity: Uncommon
 
 Cost: $7
 
-"This Joker Gains X1 Mult per Spectral card used, resets if any Spectral Pack is skipped, (Currently: X1 Mult)"
+"This Joker Gains X0.75 Mult per Spectral card used, resets if any Spectral Pack is skipped, (Currently: X1 Mult)"
 
 ------
 
@@ -30,9 +30,9 @@ Cost: $6
 
 ![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7)
 
-Rarity: Rare 
+Rarity: Uncommon 
 
-Cost: $8
+Cost: $6
 
 "This Joker Gains +1 Mult for each 8 scored and +8 Chips for each 8 discarded (Currently: +0 Mult / +0 Chips)"
 
@@ -42,11 +42,11 @@ Cost: $8
 
 ![InterstellarJokerArtplus](https://github.com/user-attachments/assets/4ff16e35-1bee-4ec8-86e0-eb1c47833196)
 
-Rarity: Common 
+Rarity: Rare 
 
-Cost: $5
+Cost: $7
 
-"1 in 7 chance for each played 7 to create a Black Hole when scored"
+"1 in 4 chance for each played 7 to create a Black Hole when scored"
 
 -----
 
