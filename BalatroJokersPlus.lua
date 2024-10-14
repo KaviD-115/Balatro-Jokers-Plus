@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.4.1
+--- VERSION: 1.4.2
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
