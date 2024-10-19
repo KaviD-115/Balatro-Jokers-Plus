@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 191970
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.4.2
+--- VERSION: 1.5.0
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -447,7 +447,7 @@ SMODS.Joker{
      if pseudorandom('Whatareyasellin') < G.GAME.probabilities.normal/card.ability.extra then
       G.jokers.config.card_limit = G.jokers.config.card_limit + 1
        return {
-         message = 'What are ya buyin?',
+         message = '+1 Joker Slot',
          colour = G.C.PURPLE,
          delay = 0.45, 
             } 
@@ -475,7 +475,7 @@ SMODS.Joker{
     eternal_compat = false,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = {mult = 16}},
+    config = {extra = {mult = 18}},
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.mult,}}
  end,
@@ -752,4 +752,86 @@ SMODS.Joker{
                           }
             end
     end,
+}
+
+--Challenges
+
+SMODS.Challenge{
+    loc_txt = "Jinxed (BJ+)",
+    key = 'jinxed',
+    rules = {
+        custom = {
+    },
+        modifiers = {
+            {id = 'joker_slots', value = 2},
+            {id = 'consumable_slots', value = 3},
+        },
+    },
+    jokers = {
+        {id = 'j_lucky_cat', edition = 'negative', eternal = true},
+    },
+    consumeables = {
+        {id = 'c_ectoplasm'},
+        {id = 'c_magician'},
+        },
+    vouchers = {
+	{id = 'v_omen_globe'},   
+        },
+    restrictions = {
+        banned_cards = {},
+        banned_tags = {},
+        banned_other = {}
+    },
+    }
+
+SMODS.Challenge{
+    loc_txt = "Mine-crafting (BJ+)",
+    key = 'minecrafting',
+    rules = {
+        custom = {
+            {id = 'no_reward_specific', value = 'Big'},
+	    {id = 'no_extra_hand_money'},
+            {id = 'no_interest'},
+},
+        modifiers = {
+    },
+},
+    jokers = {
+        {id = 'j_PlusJokers_thepickaxe', eternal = true},
+    },
+    consumeables = {
+            {id = 'c_star'},
+},
+    vouchers = {},
+    restrictions = {
+        banned_cards = {
+            {id = 'j_rocket'},
+            {id = 'j_golden'},
+            {id = 'j_satellite'},
+            {id = 'v_recyclomancy'}, 
+},
+             banned_tags = {},
+             banned_other = {}
+    },
+}
+
+SMODS.Challenge{
+    loc_txt = "What are ya Buyin? (BJ+)",
+    key = 'what_are_ya_buyin',
+    rules = {
+        custom = {},
+        modifiers = {
+            {id = 'joker_slots', value = 2},
+        },
+    },
+    jokers = {
+        {id = 'j_PlusJokers_attachecase'},
+    },
+    consumeables = {},
+    vouchers = {},
+    restrictions = {
+        banned_cards = {},
+            banned_tags = {},
+            banned_other = {}
+    },
 }
