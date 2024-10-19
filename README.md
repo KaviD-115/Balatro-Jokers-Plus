@@ -1,7 +1,8 @@
 ![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
 
 -----
-
+Now with added challenges!
+-----
 -- PHANTOM --
 
 ![PhantomJokerArtplus](https://github.com/user-attachments/assets/a2e1ab8a-fbbd-4159-98a9-65e037c1797a)                                                    
@@ -175,7 +176,7 @@ Rarity: Common
 
 Cost: $5
 
-"+16 Mult, Destroyed if Blind is defeated on the final hand of round"
+"+18 Mult, Destroyed if Blind is defeated on the final hand of round"
 
 -----
 
