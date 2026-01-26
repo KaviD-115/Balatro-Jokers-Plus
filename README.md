@@ -1,7 +1,7 @@
 ![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
 
 -----
-Now with added challenges!
+Now with 5 added challenges!
 -----
 -- PHANTOM --
 
@@ -43,11 +43,11 @@ Cost: $6
 
 ![InterstellarJokerArtplus](https://github.com/user-attachments/assets/4ff16e35-1bee-4ec8-86e0-eb1c47833196)
 
-Rarity: Rare 
+Rarity: Uncommon 
 
 Cost: $7
 
-"1 in 4 chance for each played 7 to create a Black Hole when scored"
+"1 in 7 chance for each played 7 to create a Black Hole when scored"
 
 -----
 
@@ -73,7 +73,7 @@ Rarity: Common
 
 Cost: $5
 
-"Gains +12 chips if played hand contains a Flush (Currently +0 chips)"
+"Gains +10 chips if played hand contains a Flush (Currently +0 chips)"
 
 -----
 
@@ -95,7 +95,7 @@ Cost: $6
 
 Rarity: Uncommon
 
-Cost: $5
+Cost: $6
 
 "Retrigger all played Wild and Stone Cards"
 
@@ -109,7 +109,7 @@ Rarity: Legendary
 
 Cost: Soul Card
 
-"When Blind is selected, destroy Joker to the right and permanently gain X0.75 Mult (Currently: X1 Mult)"
+"When Blind is selected, destroy Joker to the right and permanently gain X1 Mult (Currently: X1 Mult)"
 
 -----
 
@@ -160,9 +160,9 @@ Cost: $5
 
 Rarity: Rare
 
-Cost: $8
+Cost: $10
 
-"1 in 2 chance to permanently gain +1 Joker Slot whenever a Boss Blind is defeated"
+"+2 Joker Slots, What are ya Buyin?"
 
 -----
 
@@ -176,7 +176,7 @@ Rarity: Common
 
 Cost: $5
 
-"+18 Mult, Destroyed if Blind is defeated on the final hand of round"
+"+75 Chips, Destroyed if Blind is defeated on the final hand of round"
 
 -----
 
