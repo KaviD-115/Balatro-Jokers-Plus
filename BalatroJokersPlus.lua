@@ -3,9 +3,9 @@
 --- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
---- BADGE_COLOR: 191970
+--- BADGE_COLOR: CE2029
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.5.0
+--- VERSION: 1.6.0
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -50,7 +50,6 @@ SMODS.Atlas({
     px = 71,
     py = 95,
 })
-
 
 SMODS.Joker{
   key = 'phantom',
@@ -143,7 +142,7 @@ SMODS.Joker{
      '{C:spectral}Black Hole{} when scored',
         }
     },
-    rarity = 3,
+    rarity = 2,
     atlas = "jokersplus", pos = {x = 3, y = 0},
     cost = 7,
     unlocked = true,
@@ -151,7 +150,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = 4},
+    config = {extra = 7},
     loc_vars = function(self, info_queue, card)
     return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
   end,
@@ -343,7 +342,7 @@ SMODS.Joker{
 						return true
 					end)}))
 				return {
-					message = ('YOU GET. . .'),
+					message = ('YOU GET'),
 					colour = G.C.BLUE,
 					card = card
 				}
@@ -425,35 +424,28 @@ SMODS.Joker{
   loc_txt = {
     name = 'Attache Case',
     text = {
-     "{C:green}#1# in #2#{} chance to permanently",
-                    "gain {C:dark_edition}+1{} Joker Slot whenever",
-                    "a {C:attention}Boss Blind{} is defeated",
+     "{C:dark_edition}+2{} Joker Slots",
+		"{C:inactive}What are ya buyin?",
          }
     },
     rarity = 3,
     atlas = "jokersplusupdatepack3", pos = {x = 0, y = 0},
-    cost = 8,
+    cost = 10,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     blueprint_compat = false,
-    perishable_compat = true,
-    config = {extra = 2},
+    perishable_compat = false,
+    config = {extra = {slots = 2}},
     loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
-  end,
-    calculate = function(self, card, context)
-    if context.end_of_round and not context.individual and not context.repetition and not context.blueprint and G.GAME.blind.boss and not self.gone then
-     if pseudorandom('Whatareyasellin') < G.GAME.probabilities.normal/card.ability.extra then
-      G.jokers.config.card_limit = G.jokers.config.card_limit + 1
-       return {
-         message = '+1 Joker Slot',
-         colour = G.C.PURPLE,
-         delay = 0.45, 
-            } 
-     end
-    end
-end,
+    return {vars = {card.ability.extra.slots}}
+    end,
+        add_to_deck = function(self, card, from_debuff)
+		G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.slots
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.slots
+	end,
 }
 
 SMODS.Joker{
@@ -461,7 +453,7 @@ SMODS.Joker{
   loc_txt = {
     name = 'Octane',
     text = {
-            "{C:mult}+#1#{} Mult",
+            "{C:chips}+#1#{} Chips",
                     "Destroyed if Blind",
                     "is defeated on the", 
                     "{C:attention}final hand{} of round",
@@ -469,21 +461,21 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplusupdatepack4", pos = {x = 1, y = 0},
-    cost = 5,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = false,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = {mult = 18}},
+    config = {extra = {chips = 75}},
     loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.mult,}}
+    return {vars = {card.ability.extra.chips,}}
  end,
     calculate = function(self, card, context)
 if context.joker_main then
         return {
-                mult_mod = card.ability.extra.mult,
-                message = localize{type = 'variable', key = 'a_mult', vars = {card.ability.extra.mult}}
+                chip_mod = card.ability.extra.chips,
+                message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}}
             }
 end
 if context.cardarea == G.jokers then
@@ -507,7 +499,7 @@ if context.cardarea == G.jokers then
                     })) 
                     return {
                         message = ('What a save!'),
-                        colour = G.C.ORANGE
+                        colour = G.C.BLUE
                     }
 
 	  end
@@ -535,7 +527,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {chips = 0, chip_gain = 12}},
+    config = {extra = {chips = 0, chip_gain = 10}},
     loc_vars = function(self, info_queue, card)
    return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
   end, 
@@ -633,7 +625,7 @@ SMODS.Joker{
     },
     rarity = 2,
     atlas = "jokersplusupdatepack1", pos = {x = 2, y = 0},
-    cost = 5,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -720,7 +712,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {Xmult_add = 0.75, Xmult = 1}},
+    config = {extra = {Xmult_add = 1, Xmult = 1}},
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.Xmult_add, card.ability.extra.Xmult}}
   end,
@@ -757,13 +749,40 @@ SMODS.Joker{
 --Challenges
 
 SMODS.Challenge{
+    loc_txt = "Card Collector (BJ+)",
+    key = 'cardcollector',
+    rules = {
+        custom = {},
+        modifiers = {
+            {id = "hands", value = 3},
+            {id = "hand_size", value = 9},
+        }
+    },
+    jokers = {
+        {id = 'j_trading', eternal = true},
+        {id = 'j_PlusJokers_pjaten', eternal = true},
+    },
+    consumeables = {},
+    vouchers = {
+           {id = 'v_magic_trick'},
+	   {id = 'v_illusion'},
+},
+    restrictions = {
+        banned_cards = {},
+        banned_tags = {},
+        banned_other = {},
+    },
+    }
+
+
+SMODS.Challenge{
     loc_txt = "Jinxed (BJ+)",
     key = 'jinxed',
     rules = {
         custom = {
     },
         modifiers = {
-            {id = 'joker_slots', value = 2},
+            {id = 'joker_slots', value = 1},
             {id = 'consumable_slots', value = 3},
         },
     },
@@ -816,22 +835,67 @@ SMODS.Challenge{
 }
 
 SMODS.Challenge{
-    loc_txt = "What are ya Buyin? (BJ+)",
-    key = 'what_are_ya_buyin',
+    loc_txt = "READY (BJ+)",
+    key = 'readymmx',
     rules = {
         custom = {},
         modifiers = {
-            {id = 'joker_slots', value = 2},
+            {id = 'consumable_slots', value = 3},
         },
     },
     jokers = {
-        {id = 'j_PlusJokers_attachecase'},
+        {id = 'j_PlusJokers_mmx', eternal = true},
     },
     consumeables = {},
     vouchers = {},
     restrictions = {
-        banned_cards = {},
-            banned_tags = {},
-            banned_other = {}
+        banned_cards = {
+           {id = "p_arcana_normal_1"},
+             {id = "p_arcana_normal_2"},
+             {id = "p_arcana_jumbo_1"},
+             {id = "p_arcana_jumbo_2"},
+             {id = "p_arcana_mega_1"},
+             {id = "p_arcana_mega_2"},
+	     { id = "v_crystal_ball" },
+	     { id = "v_omen_globe" },
+},
+        banned_tags = {},
+        banned_other = {},
+    },
+    }
+
+
+SMODS.Challenge{
+    loc_txt = "Wild Wasteland (BJ+)",
+    key = 'wildwasteland',
+    rules = {
+        custom = {},
+        modifiers = {
+            {id = "dollars", value = -1},
+            {id = "discards", value = 5},
+	    {id = "hands", value = 1},
+    },
+},
+    jokers = {
+        {id = 'j_PlusJokers_wildwest', eternal = true},
+	{id = 'j_PlusJokers_vaultboy',},
+    },
+    consumeables = {
+            {id = 'c_lovers'},
+	    {id = 'c_tower'},
+},
+    vouchers = {},
+    restrictions = {
+        banned_cards = {
+                { id = "v_nacho_tong" },
+	        { id = "v_recyclomancy" },
+},
+             banned_tags = {},
+             banned_other = {
+                {id = "bl_goad", type = "blind"},
+                {id = "bl_head", type = "blind"},
+                {id = "bl_club", type = "blind"},
+                { id = "bl_window", type = "blind"},
+      }
     },
 }
