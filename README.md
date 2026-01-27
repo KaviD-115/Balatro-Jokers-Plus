@@ -1,8 +1,6 @@
 ![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
 
 -----
-Now with 5 added challenges!
------
 -- PHANTOM --
 
 ![PhantomJokerArtplus](https://github.com/user-attachments/assets/a2e1ab8a-fbbd-4159-98a9-65e037c1797a)                                                    
@@ -189,6 +187,26 @@ Rarity: Rare
 Cost: $10
 
 "Sell to create a Negative Soul card, Vault-Tec approved! (-1 Joker Slot)"
+
+-----
+
+*****NEW with Joker Update 5*****
+
+-- RUPEES --
+
+<img width="142" height="190" alt="RupeesJoker" src="https://github.com/user-attachments/assets/8987466f-a462-419c-91ba-d21a19b2f1a8" />
+
+Rarity: Uncommon
+
+Cost: $6
+
+"Earn $1, $5, or $20 at end of round", (Odds = 1 in 3 for green, 1 in 2 for blue, and 1 in 6 for red)"
+
+-----
+
+Now with 6 added challenges!
+-----
+Challenges include: "Card Collector", "Jinxed", "Mine-crafting", "READY", "The Legend of Jimbo", & "Wild Wasteland"
 
 -----
 
