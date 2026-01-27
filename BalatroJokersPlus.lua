@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: CE2029
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.6.0
+--- VERSION: 1.7.0
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -50,6 +50,14 @@ SMODS.Atlas({
     px = 71,
     py = 95,
 })
+
+SMODS.Atlas({ 
+    key = "rupeesjoker",
+    path = "RupeesJoker.png", 
+    px = 71,
+    py = 95,
+})
+
 
 SMODS.Joker{
   key = 'phantom',
@@ -385,38 +393,47 @@ end,
 }
 
 SMODS.Joker{
-  key = "vaultboy",
+  key = 'rupees',
   loc_txt = {
-    name = 'Vault Boy',
-    text = {
-            "Sell to create a", 
-                    "{C:dark_edition}Negative{} {C:spectral}Soul{} card",
-                    "{C:inactive{C:money}Vault-Tec{} {C:inactive}approved!",
-                    "{C:inactive}(-1 Joker Slot)",
+    name = 'Rupees',
+        text = {
+     "Earn {C:green}$1{}, {C:chips}$5{}, or {C:mult}$20{}", 
+                    "at end of round",
+		    "{C:inactive}(Odds = {C:green}1 in 3{}{C:inactive},", 
+                    "{C:chips}1 in 2{}{C:inactive},{C:inactive} & {C:mult}1 in 6{}{C:inactive})",
          }
     },
-    rarity = 3,
-
-    atlas = "jokersplusupdatepack4", pos = {x = 0, y = 0},
-    cost = 10,
+    rarity = 2,
+    atlas = "rupeesjoker", pos = {x = 0, y = 0},
+    cost = 6,
     unlocked = true,
     discovered = true,
-    eternal_compat = false,
+    eternal_compat = true,
     blueprint_compat = false,
-    perishable_compat = false,
-    calculate = function(self, card, context)
-        if context.selling_self and not context.blueprint then
-       G.jokers.config.card_limit = G.jokers.config.card_limit - 1
-                    G.E_MANAGER:add_event(Event({
-                        func = function()  
-                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_soul', 'sup')
-                            c:set_edition({negative = true}, true)
-                            c:add_to_deck()
-                            G.consumeables:emplace(c)
-                            return true
-                        end}))
+    perishable_compat = true,
+    config = {extra = { small_payout = 1,
+                        medium_payout = 5,
+                        big_payout = 20
+	     }
+    },
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.small_payout, card.ability.extra.medium_payout, card.ability.extra.big_payout,}}
+    end,
+    calc_dollar_bonus = function(self, card)
+     local d100 = pseudorandom(pseudoseed('rupees'), 1, 100)
+      if d100 <= 33 then
+            return card.ability.extra.small_payout
         end
-end,
+
+        if d100 > 33 and d100 <= 83 then
+            return card.ability.extra.medium_payout
+        end
+
+        if d100 > 83 then
+            return card.ability.extra.big_payout
+        end
+  end,
+
 }
 
 SMODS.Joker{
@@ -509,6 +526,41 @@ end,
 }
 
 SMODS.Joker{
+  key = "vaultboy",
+  loc_txt = {
+    name = 'Vault Boy',
+    text = {
+            "Sell to create a", 
+                    "{C:dark_edition}Negative{} {C:spectral}Soul{} card",
+                    "{C:inactive{C:money}Vault-Tec{} {C:inactive}approved!",
+                    "{C:inactive}(-1 Joker Slot)",
+         }
+    },
+    rarity = 3,
+
+    atlas = "jokersplusupdatepack4", pos = {x = 0, y = 0},
+    cost = 10,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    blueprint_compat = false,
+    perishable_compat = false,
+    calculate = function(self, card, context)
+        if context.selling_self and not context.blueprint then
+       G.jokers.config.card_limit = G.jokers.config.card_limit - 1
+                    G.E_MANAGER:add_event(Event({
+                        func = function()  
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_soul', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            return true
+                        end}))
+        end
+end,
+}
+
+SMODS.Joker{
   key = 'plumber',
   loc_txt = {
     name = 'Plumber',
@@ -548,69 +600,6 @@ SMODS.Joker{
           chip_mod = card.ability.extra.chips,
       }
      end
-    end,
-}
-
-SMODS.Joker{
-  key = 'cottoncandy',
-  loc_txt = {
-    name = 'Cotton Candy',
-    text = {
-     "Gain {C:chips}+#1#{} hand and {C:red}+#2#{} discard",
-     "at the start of each round", 
-     "for the next {C:attention}#3#{} rounds",
-        }
-    },
-    rarity = 2,
-    atlas = "jokersplusupdatepack1", pos = {x = 1, y = 0}, 
-    cost = 6,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = false,
-    blueprint_compat = false,
-    perishable_compat = true,
-    config = {extra = {hands = 1, discards = 1, remaining = 5}},
-    loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.hands, card.ability.extra.discards, card.ability.extra.remaining}}
-  end,
-    calculate = function(self, card, context)
-        if context.end_of_round and not (context.individual or context.repetition or context.blueprint) then
-                if card.ability.extra.remaining - 1 <= 0 then 
-                    G.E_MANAGER:add_event(Event({
-                        func = function()
-                            play_sound('tarot1')
-                            card.T.r = -0.2
-                            card:juice_up(0.3, 0.4)
-                            card.states.drag.is = true
-                            card.children.center.pinch.x = true
-                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
-                                func = function()
-                                        G.jokers:remove_card(card)
-                                        card:remove()
-                                        card = nil
-                                    return true; end})) 
-                            return true
-                        end
-                    })) 
-                    return {
-                        message = localize('k_eaten_ex'),
-                        colour = G.C.FILTER
-                    }
-        else
-            card.ability.extra.remaining = card.ability.extra.remaining - 1
-                    return {
-                        message = card.ability.extra.remaining..'',
-                        colour = G.C.FILTER
-                    } 
-            end
-        end
-        if context.setting_blind and not (context.blueprint_card or card).getting_sliced then
-                    ease_hands_played(card.ability.extra.hands)
-       end
-        if context.setting_blind and not (context.blueprint_card or card).getting_sliced then
-                    ease_discard(card.ability.extra.discards)
-       end
-
     end,
 }
 
@@ -691,6 +680,69 @@ calc_dollar_bonus = function(self, card)
     if bonus > 0 then return bonus
     end
 end
+}
+
+SMODS.Joker{
+  key = 'cottoncandy',
+  loc_txt = {
+    name = 'Cotton Candy',
+    text = {
+     "Gain {C:chips}+#1#{} hand and {C:red}+#2#{} discard",
+     "at the start of each round", 
+     "for the next {C:attention}#3#{} rounds",
+        }
+    },
+    rarity = 2,
+    atlas = "jokersplusupdatepack1", pos = {x = 1, y = 0}, 
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = {hands = 1, discards = 1, remaining = 5}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.hands, card.ability.extra.discards, card.ability.extra.remaining}}
+  end,
+    calculate = function(self, card, context)
+        if context.end_of_round and not (context.individual or context.repetition or context.blueprint) then
+                if card.ability.extra.remaining - 1 <= 0 then 
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('tarot1')
+                            card.T.r = -0.2
+                            card:juice_up(0.3, 0.4)
+                            card.states.drag.is = true
+                            card.children.center.pinch.x = true
+                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                                func = function()
+                                        G.jokers:remove_card(card)
+                                        card:remove()
+                                        card = nil
+                                    return true; end})) 
+                            return true
+                        end
+                    })) 
+                    return {
+                        message = localize('k_eaten_ex'),
+                        colour = G.C.FILTER
+                    }
+        else
+            card.ability.extra.remaining = card.ability.extra.remaining - 1
+                    return {
+                        message = card.ability.extra.remaining..'',
+                        colour = G.C.FILTER
+                    } 
+            end
+        end
+        if context.setting_blind and not (context.blueprint_card or card).getting_sliced then
+                    ease_hands_played(card.ability.extra.hands)
+       end
+        if context.setting_blind and not (context.blueprint_card or card).getting_sliced then
+                    ease_discard(card.ability.extra.discards)
+       end
+
+    end,
 }
 
 SMODS.Joker{
@@ -827,7 +879,9 @@ SMODS.Challenge{
             {id = 'j_rocket'},
             {id = 'j_golden'},
             {id = 'j_satellite'},
-            {id = 'v_recyclomancy'}, 
+            {id = 'v_recyclomancy'},
+            {id = 'v_seed_money'},
+            {id = 'v_money_tree'},
 },
              banned_tags = {},
              banned_other = {}
@@ -864,6 +918,42 @@ SMODS.Challenge{
     },
     }
 
+SMODS.Challenge{
+    loc_txt = "The Legend of Jimbo (BJ+)",
+    key = 'legendofjimbo',
+    rules = {
+        custom = {
+            {id = 'no_reward_specific', value = 'Small'},
+            {id = 'no_reward_specific', value = 'Big'},
+	    {id = 'no_extra_hand_money'},
+            {id = 'no_interest'},
+},
+        modifiers = {
+            {id = "dollars", value = 0},
+        },
+},
+    jokers = {
+        {id = 'j_PlusJokers_rupees', eternal = true},
+        {id = 'j_joker', eternal = true},
+    },
+    consumeables = {{id = 'c_talisman'},
+        {id = 'c_talisman'},
+},
+    vouchers = {
+},
+    restrictions = {
+        banned_cards = {{id = 'j_rocket'},
+            {id = 'j_golden'},
+            {id = 'j_satellite'},
+            {id = 'v_recyclomancy'},
+            {id = 'v_seed_money'},
+            {id = 'v_money_tree'},},
+        banned_tags = {
+            {id = 'tag_investment'},
+},
+        banned_other = {},
+    },
+    }
 
 SMODS.Challenge{
     loc_txt = "Wild Wasteland (BJ+)",
