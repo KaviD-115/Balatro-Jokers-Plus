@@ -1,4 +1,4 @@
-![pluscoverart3](https://github.com/user-attachments/assets/4031b049-2573-4b3a-8c95-9862d122c974)
+<img width="3400" height="1800" alt="BalatroJokersPLUSofficialcoverart" src="https://github.com/user-attachments/assets/7fd5d6d9-2053-4b17-9960-ba48762d695d" />
 
 -----
 -- PHANTOM --
@@ -218,9 +218,10 @@ Then, place the file into your mod folder and Extract all files from the folder
 
 -----
 
-![Screenshot 2024-10-13 042616](https://github.com/user-attachments/assets/1882ddf5-48bb-4fa4-9383-fd6cf7310b93)
+![20260127183927_1](https://github.com/user-attachments/assets/87bf3ab4-0397-4224-afc6-03b8ba758be4)
+![20260127183934_1](https://github.com/user-attachments/assets/03985a5c-3203-4a73-9288-e3e198fa4137)
 
 
-Joker Artwork and Coding by me (KaviD 115)
+Joker Artwork and Coding by me (KaviD 115), Cover Art for the mod by my Wife
 
 -----
