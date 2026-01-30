@@ -3,7 +3,7 @@
 --- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
---- BADGE_COLOR: CE2029
+--- BADGE_COLOR: F52F57
 --- DISPLAY_NAME: Balatro Jokers PLUS
 --- VERSION: 1.7.1
 --- PREFIX: PlusJokers
@@ -989,4 +989,5 @@ SMODS.Challenge{
       }
     },
 }
+
 
