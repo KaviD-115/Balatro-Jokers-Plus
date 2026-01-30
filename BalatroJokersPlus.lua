@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: CE2029
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.7.0
+--- VERSION: 1.7.1
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -399,13 +399,13 @@ SMODS.Joker{
         text = {
      "Earn {C:green}$1{}, {C:chips}$5{}, or {C:mult}$20{}", 
                     "at end of round",
-		    "{C:inactive}(Odds = {C:green}1 in 3{}{C:inactive},", 
-                    "{C:chips}1 in 2{}{C:inactive},{C:inactive} & {C:mult}1 in 6{}{C:inactive})",
+		    "{C:inactive}(Odds = {C:green}1 in 2{}{C:inactive},", 
+                    "{C:chips}3 in 8{}{C:inactive},{C:inactive} & {C:mult}1 in 8{}{C:inactive})",
          }
     },
-    rarity = 2,
+    rarity = 1,
     atlas = "rupeesjoker", pos = {x = 0, y = 0},
-    cost = 6,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -421,15 +421,15 @@ SMODS.Joker{
     end,
     calc_dollar_bonus = function(self, card)
      local d100 = pseudorandom(pseudoseed('rupees'), 1, 100)
-      if d100 <= 33 then
+      if d100 <= 50 then
             return card.ability.extra.small_payout
         end
 
-        if d100 > 33 and d100 <= 83 then
+        if d100 > 50 and d100 <= 87 then
             return card.ability.extra.medium_payout
         end
 
-        if d100 > 83 then
+        if d100 > 87 then
             return card.ability.extra.big_payout
         end
   end,
@@ -989,3 +989,4 @@ SMODS.Challenge{
       }
     },
 }
+
