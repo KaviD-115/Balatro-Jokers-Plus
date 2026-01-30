@@ -196,11 +196,11 @@ Cost: $10
 
 <img width="142" height="190" alt="RupeesJoker" src="https://github.com/user-attachments/assets/8987466f-a462-419c-91ba-d21a19b2f1a8" />
 
-Rarity: Uncommon
+Rarity: Common
 
-Cost: $6
+Cost: $5
 
-"Earn $1, $5, or $20 at end of round", (Odds = 1 in 3 for green, 1 in 2 for blue, and 1 in 6 for red)"
+"Earn $1, $5, or $20 at end of round", (Odds = 1 in 2 for green, 3 in 8 for blue, and 1 in 8 for red)"
 
 -----
 
