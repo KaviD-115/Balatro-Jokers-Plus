@@ -3,9 +3,9 @@
 --- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
---- BADGE_COLOR: F52F57
+--- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.7.1
+--- VERSION: 1.7.2
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -196,7 +196,7 @@ SMODS.Joker{
 			"{C:mult}+#1#{C:inactive} Mult / {C:chips}+#2# {C:inactive}Chips)",
          }
     },
-    rarity = 2,
+    rarity = 1,
     atlas = "jokersplus", pos = {x = 0, y = 0},
     cost = 6,
     unlocked = true,
@@ -204,7 +204,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {mult = 0, chips = 0, mult_gain = 1, chip_gain = 8}},
+    config = {extra = {mult = 0, chips = 0, mult_gain = 1, chip_gain = 4}},
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.mult, card.ability.extra.chips, card.ability.extra.mult_gain, card.ability.extra.chip_gain}}
   end,
@@ -318,7 +318,7 @@ SMODS.Joker{
   loc_txt = {
     name = 'Mega Man X',
     text = {
-     "Generate {C:attention}2{} copies of a",
+     "Generate {C:attention}2{} copies of a single",
                     "random {C:tarot}Tarot{} card when",
                     "{C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(Requires only 1 open slot)"
@@ -326,7 +326,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplusupdatepack3", pos = {x = 1, y = 0},
-    cost = 5,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -442,7 +442,8 @@ SMODS.Joker{
     name = 'Attache Case',
     text = {
      "{C:dark_edition}+2{} Joker Slots",
-		"{C:inactive}What are ya buyin?",
+     "{C:attention}+1{} consumable slot",
+		"{C:inactive}What're ya buyin?",
          }
     },
     rarity = 3,
@@ -453,16 +454,23 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = false,
     perishable_compat = false,
-    config = {extra = {slots = 2}},
+    config = {extra = {merchant = 1}},
     loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.slots}}
+    return {vars = {card.ability.extra.merchant}}
     end,
         add_to_deck = function(self, card, from_debuff)
-		G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.slots
+		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
+		local mod = card.ability.extra.merchant
+		 G.jokers.config.card_limit = G.jokers.config.card_limit + 2
+		 G.consumeables.config.card_limit = G.consumeables.config.card_limit + 1
 	end,
 	remove_from_deck = function(self, card, from_debuff)
-		G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.slots
+		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
+		local mod = card.ability.extra.merchant
+		 G.jokers.config.card_limit = G.jokers.config.card_limit - 2
+		 G.consumeables.config.card_limit = G.consumeables.config.card_limit - 1
 	end,
+
 }
 
 SMODS.Joker{
@@ -530,25 +538,38 @@ SMODS.Joker{
   loc_txt = {
     name = 'Vault Boy',
     text = {
-            "Sell to create a", 
-                    "{C:dark_edition}Negative{} {C:spectral}Soul{} card",
-                    "{C:inactive{C:money}Vault-Tec{} {C:inactive}approved!",
-                    "{C:inactive}(-1 Joker Slot)",
+            "After {C:attention}#1#{} rounds, sell this card",
+                    "to create a {C:dark_edition}Negative{} {C:spectral}Soul{} card",
+                    "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
+                    "{C:money}Vault-Tec{} {C:inactive}approved! {X:mult,C:white}X#3#{} ",
          }
     },
     rarity = 3,
-
     atlas = "jokersplusupdatepack4", pos = {x = 0, y = 0},
-    cost = 10,
+    cost = 8,
     unlocked = true,
     discovered = true,
     eternal_compat = false,
     blueprint_compat = false,
     perishable_compat = false,
+    config = {extra = {rounds_needed = 3, rounds = 0, Xmult = 0.75,}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {card.ability.extra.rounds_needed, card.ability.extra.rounds, card.ability.extra.Xmult,}}
+ end,
     calculate = function(self, card, context)
-        if context.selling_self and not context.blueprint then
-       G.jokers.config.card_limit = G.jokers.config.card_limit - 1
-                    G.E_MANAGER:add_event(Event({
+        if context.end_of_round and not context.blueprint and not context.individual and not context.repetition and card.ability.extra.rounds < card.ability.extra.rounds_needed then
+          card.ability.extra.rounds = card.ability.extra.rounds + 1
+            if card.ability.extra.rounds >= card.ability.extra.rounds_needed then
+                local eval = function(card) return not card.REMOVED end
+                juice_card_until(card, eval, true)
+            end
+            return {
+                    message = (card.ability.extra.rounds < card.ability.extra.rounds_needed) and
+                    (card.ability.extra.rounds .. '/' .. card.ability.extra.rounds_needed) or localize('k_active_ex'),
+                    colour = G.C.FILTER
+                }
+            elseif context.selling_self and card.ability.extra.rounds >= card.ability.extra.rounds_needed then
+              G.E_MANAGER:add_event(Event({
                         func = function()  
                             local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_soul', 'sup')
                             c:set_edition({negative = true}, true)
@@ -556,7 +577,12 @@ SMODS.Joker{
                             G.consumeables:emplace(c)
                             return true
                         end}))
-        end
+            end
+         if context.joker_main then
+        return {
+          Xmult = card.ability.extra.Xmult,
+        }
+       end
 end,
 }
 
@@ -579,7 +605,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = false,
-    config = {extra = {chips = 0, chip_gain = 10}},
+    config = {extra = {chips = 0, chip_gain = 8}},
     loc_vars = function(self, info_queue, card)
    return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
   end, 
@@ -924,7 +950,6 @@ SMODS.Challenge{
     rules = {
         custom = {
             {id = 'no_reward_specific', value = 'Small'},
-            {id = 'no_reward_specific', value = 'Big'},
 	    {id = 'no_extra_hand_money'},
             {id = 'no_interest'},
 },
@@ -961,9 +986,8 @@ SMODS.Challenge{
     rules = {
         custom = {},
         modifiers = {
-            {id = "dollars", value = -1},
-            {id = "discards", value = 5},
-	    {id = "hands", value = 1},
+            {id = "discards", value = 4},
+	    {id = "hands", value = 2},
     },
 },
     jokers = {
@@ -989,5 +1013,3 @@ SMODS.Challenge{
       }
     },
 }
-
-
