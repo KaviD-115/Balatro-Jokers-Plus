@@ -29,11 +29,11 @@ Cost: $6
 
 ![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7)
 
-Rarity: Uncommon 
+Rarity: Common 
 
 Cost: $6
 
-"This Joker Gains +1 Mult for each 8 scored and +8 Chips for each 8 discarded (Currently: +0 Mult / +0 Chips)"
+"This Joker Gains +1 Mult for each 8 scored and +4 Chips for each 8 discarded (Currently: +0 Mult / +0 Chips)"
 
 -----
 
@@ -71,7 +71,7 @@ Rarity: Common
 
 Cost: $5
 
-"Gains +10 chips if played hand contains a Flush (Currently +0 chips)"
+"Gains +8 chips if played hand contains a Flush (Currently +0 chips)"
 
 -----
 
@@ -146,9 +146,9 @@ Cost: $5
 
 Rarity: Common
 
-Cost: $5
+Cost: $4
 
-"Generate 2 Copies of a random Tarot card when Boss Blind is defeated"
+"Generate 2 Copies of a single random Tarot card when Boss Blind is defeated"
 
 -----
 
@@ -160,7 +160,7 @@ Rarity: Rare
 
 Cost: $10
 
-"+2 Joker Slots, What are ya Buyin?"
+"+2 Joker Slots, +1 consumable slot, What're ya Buyin?"
 
 -----
 
@@ -172,7 +172,7 @@ Cost: $10
 
 Rarity: Common
 
-Cost: $5
+Cost: $4
 
 "+75 Chips, Destroyed if Blind is defeated on the final hand of round"
 
@@ -186,7 +186,7 @@ Rarity: Rare
 
 Cost: $10
 
-"Sell to create a Negative Soul card, Vault-Tec approved! (-1 Joker Slot)"
+""After 3 rounds, sell this card to create a Negative Soul card, (Currently 0/3), Vault-Tec approved! X0.75 Mult"
 
 -----
 
