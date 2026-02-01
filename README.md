@@ -186,7 +186,7 @@ Rarity: Rare
 
 Cost: $10
 
-""After 3 rounds, sell this card to create a Negative Soul card, (Currently 0/3), Vault-Tec approved! X0.75 Mult"
+"X0.75 Mult, After 3 rounds, sell this card to create a Negative Soul card, (Currently 0/3), Vault-Tec approved!"
 
 -----
 
