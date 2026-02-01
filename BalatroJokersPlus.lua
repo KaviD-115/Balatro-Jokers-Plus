@@ -538,10 +538,11 @@ SMODS.Joker{
   loc_txt = {
     name = 'Vault Boy',
     text = {
-            "After {C:attention}#1#{} rounds, sell this card",
+            "{X:mult,C:white}X#3#{} Mult",
+			        "After {C:attention}#1#{} rounds, sell this card",
                     "to create a {C:dark_edition}Negative{} {C:spectral}Soul{} card",
                     "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
-                    "{C:money}Vault-Tec{} {C:inactive}approved! {X:mult,C:white}X#3#{} ",
+                    "{C:money}Vault-Tec{} {C:inactive}approved!",
          }
     },
     rarity = 3,
@@ -1013,3 +1014,4 @@ SMODS.Challenge{
       }
     },
 }
+
