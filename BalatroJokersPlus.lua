@@ -404,8 +404,8 @@ SMODS.Joker{
     name = 'Pac-Man',
         text = {"{X:mult,C:white}X#1#{} Mult",
                     "{C:inactive}Extra Lives: {C:gold}#2#{}",
-                    "{C:mult}-1{} life if hand played",
-		    "contains a scoring {V:1}#3#{}",
+                    "This Joker loses a {C:gold}life{} if played",
+		    "hand contains a scoring {V:1}#3#{}",
                     "{s:0.8}suit changes at end of round,",
                     "{C:inactive}({C:dark_edition}+1UP{}{C:inactive} when {C:attention}Boss Blind{}{C:inactive} defeated)",
          }
@@ -1121,3 +1121,4 @@ SMODS.Challenge{
       }
     },
 }
+
