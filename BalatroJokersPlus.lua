@@ -5,8 +5,15 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.0
+--- VERSION: 1.8.1
 --- PREFIX: PlusJokers
+
+SMODS.Atlas({
+    key = "modicon",
+    path = "BJPlusModIcon.png",
+    px = 32,
+    py = 32
+})
 
 -- Registers the atlas for Jokers
 SMODS.Atlas({ 
@@ -1121,4 +1128,5 @@ SMODS.Challenge{
       }
     },
 }
+
 
