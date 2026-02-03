@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.7.2
+--- VERSION: 1.8.0
 --- PREFIX: PlusJokers
 
 -- Registers the atlas for Jokers
@@ -58,6 +58,12 @@ SMODS.Atlas({
     py = 95,
 })
 
+SMODS.Atlas({ 
+    key = "pacmanjoker",
+    path = "PacManJokerArt.png", 
+    px = 71,
+    py = 95,
+})
 
 SMODS.Joker{
   key = 'phantom',
@@ -393,6 +399,108 @@ end,
 }
 
 SMODS.Joker{
+  key = 'pacman',
+  loc_txt = {
+    name = 'Pac-Man',
+        text = {"{X:mult,C:white}X#1#{} Mult",
+                    "{C:inactive}Extra Lives: {C:gold}#2#{}",
+                    "{C:mult}-1{} life if hand played",
+		    "contains a scoring {V:1}#3#{}",
+                    "{s:0.8}suit changes at end of round,",
+                    "{C:inactive}({C:dark_edition}+1UP{}{C:inactive} when {C:attention}Boss Blind{}{C:inactive} defeated)",
+         }
+    },
+    rarity = 2,
+    atlas = "pacmanjoker", pos = {x = 0, y = 0},
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {Xmult = 2.5, remaining = 2, pacbool = false}},
+    loc_vars = function(self, info_queue, card)
+        local suit = (G.GAME.current_round.bjp_pacma_suit or {}).suit or 'Spades'
+        return {vars = {card.ability.extra.Xmult, card.ability.extra.remaining, localize(suit, 'suits_singular'),
+                colours = { G.C.SUITS[suit]}}
+        }
+    end,
+    calculate = function(self, card, context)
+       if context.joker_main and card.ability.extra.remaining >= 0 then
+            return {
+                Xmult = card.ability.extra.Xmult,
+      }
+        end
+        if context.end_of_round and not context.individual and not context.repetition and not context.blueprint and G.GAME.blind.boss and not self.gone then
+                                card.ability.extra.remaining = card.ability.extra.remaining + 1
+                                return {
+                                        play_sound('holo1'),
+					message = ('1UP!'),
+					colour = G.C.DARK_EDITION,
+					card = card
+				}
+                                end
+	if context.after and context.main_eval and not context.blueprint then
+			card.ability.extra.pacbool = false
+			for _, v in pairs(context.scoring_hand) do
+				if v:is_suit(G.GAME.current_round.bjp_pacma_suit.suit) then
+					card.ability.extra.pacbool = true
+				end
+                if card.ability.extra.pacbool then
+                  if card.ability.extra.remaining - 1 <= -1 then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('tarot1')
+                            card.T.r = -0.2
+                            card:juice_up(0.3, 0.4)
+                            card.states.drag.is = true
+                            card.children.center.pinch.x = true
+                            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, blockable = false,
+                                func = function()
+                                        G.jokers:remove_card(card)
+                                        card:remove()
+                                        card = card
+                                    return true; end})) 
+                            return true
+                        end
+                    })) 
+                    return {
+                       card_eval_status_text(card,'extra',nil, nil, nil,{message = "GAME OVER", colour = G.C.RED,}),
+                       card = card
+                    }
+               else card.ability.extra.remaining = card.ability.extra.remaining - 1
+                    return {
+                        card_eval_status_text(card,'extra',nil, nil, nil,{message = "-1 Life", colour = G.C.RED,}),
+        card = card
+                    }
+                      end
+                end
+            end
+        end
+  end
+}
+
+local function reset_bjp_pacma_suit()
+	G.GAME.current_round.bjp_pacma_suit = { suit = 'Spades' }
+	local valid_pacma_cards = {}
+	for _, playing_card in ipairs(G.playing_cards) do
+		if not SMODS.has_no_suit(playing_card) then
+			valid_pacma_cards[#valid_pacma_cards + 1] = playing_card
+		end
+	end
+	local pacma_card = pseudorandom_element(valid_pacma_cards,
+		pseudoseed('bjp_pacmajoker' .. G.GAME.round_resets.ante))
+	if pacma_card then
+		G.GAME.current_round.bjp_pacma_suit.suit = pacma_card.base.suit
+	end
+end
+
+function SMODS.current_mod.reset_game_globals(run_start)
+reset_bjp_pacma_suit()
+end
+
+
+SMODS.Joker{
   key = 'rupees',
   loc_txt = {
     name = 'Rupees',
@@ -433,43 +541,6 @@ SMODS.Joker{
             return card.ability.extra.big_payout
         end
   end,
-
-}
-
-SMODS.Joker{
-  key = 'attachecase',
-  loc_txt = {
-    name = 'Attache Case',
-    text = {
-     "{C:dark_edition}+2{} Joker Slots",
-     "{C:attention}+1{} consumable slot",
-		"{C:inactive}What're ya buyin?",
-         }
-    },
-    rarity = 3,
-    atlas = "jokersplusupdatepack3", pos = {x = 0, y = 0},
-    cost = 10,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    blueprint_compat = false,
-    perishable_compat = false,
-    config = {extra = {merchant = 1}},
-    loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.merchant}}
-    end,
-        add_to_deck = function(self, card, from_debuff)
-		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
-		local mod = card.ability.extra.merchant
-		 G.jokers.config.card_limit = G.jokers.config.card_limit + 2
-		 G.consumeables.config.card_limit = G.consumeables.config.card_limit + 1
-	end,
-	remove_from_deck = function(self, card, from_debuff)
-		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
-		local mod = card.ability.extra.merchant
-		 G.jokers.config.card_limit = G.jokers.config.card_limit - 2
-		 G.consumeables.config.card_limit = G.consumeables.config.card_limit - 1
-	end,
 
 }
 
@@ -534,6 +605,49 @@ end,
 }
 
 SMODS.Joker{
+  key = 'plumber',
+  loc_txt = {
+    name = 'Plumber',
+    text = {
+     "Gains {C:chips}+#2#{} chips",
+     "if played hand",
+     "contains a {C:attention}Flush{}",
+     "{C:inactive}(Currently {C:chips}+#1# {C:inactive}Chips)"
+        }
+    },
+    rarity = 1,
+    atlas = "jokersplusupdatepack1", pos = {x = 0, y = 0},
+    cost = 5,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {chips = 0, chip_gain = 8}},
+    loc_vars = function(self, info_queue, card)
+   return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
+  end, 
+    calculate = function(self, card, context)
+      if context.cardarea == G.jokers and context.before and not context.blueprint then 
+        if context.scoring_name == "Flush" or context.scoring_name == "Straight Flush" or context.scoring_name == "Royal Flush" or context.scoring_name == "Flush Five" or context.scoring_name == "Flush House" then
+                        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
+                        return {
+                            message = localize('k_upgrade_ex'),
+                            colour = G.C.CHIPS,
+                            card = card
+                        }
+                         end
+        end
+        if context.joker_main then
+        return {
+          message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}},
+          chip_mod = card.ability.extra.chips,
+      }
+     end
+    end,
+}
+
+SMODS.Joker{
   key = "vaultboy",
   loc_txt = {
     name = 'Vault Boy',
@@ -542,7 +656,6 @@ SMODS.Joker{
 			        "After {C:attention}#1#{} rounds, sell this card",
                     "to create a {C:dark_edition}Negative{} {C:spectral}Soul{} card",
                     "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
-                    "{C:money}Vault-Tec{} {C:inactive}approved!",
          }
     },
     rarity = 3,
@@ -588,46 +701,40 @@ end,
 }
 
 SMODS.Joker{
-  key = 'plumber',
+  key = 'attachecase',
   loc_txt = {
-    name = 'Plumber',
+    name = 'Attache Case',
     text = {
-     "Gains {C:chips}+#2#{} chips",
-     "if played hand",
-     "contains a {C:attention}Flush{}",
-     "{C:inactive}(Currently {C:chips}+#1# {C:inactive}Chips)"
-        }
+     "{C:dark_edition}+2{} Joker Slots",
+     "{C:attention}+1{} consumable slot",
+		"{C:inactive}What're ya buyin?",
+         }
     },
-    rarity = 1,
-    atlas = "jokersplusupdatepack1", pos = {x = 0, y = 0},
-    cost = 5,
+    rarity = 3,
+    atlas = "jokersplusupdatepack3", pos = {x = 0, y = 0},
+    cost = 10,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
-    blueprint_compat = true,
+    blueprint_compat = false,
     perishable_compat = false,
-    config = {extra = {chips = 0, chip_gain = 8}},
+    config = {extra = {merchant = 1}},
     loc_vars = function(self, info_queue, card)
-   return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
-  end, 
-    calculate = function(self, card, context)
-      if context.cardarea == G.jokers and context.before and not context.blueprint then 
-        if context.scoring_name == "Flush" or context.scoring_name == "Straight Flush" or context.scoring_name == "Royal Flush" or context.scoring_name == "Flush Five" or context.scoring_name == "Flush House" then
-                        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
-                        return {
-                            message = localize('k_upgrade_ex'),
-                            colour = G.C.CHIPS,
-                            card = card
-                        }
-                         end
-        end
-        if context.joker_main then
-        return {
-          message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}},
-          chip_mod = card.ability.extra.chips,
-      }
-     end
+    return {vars = {card.ability.extra.merchant}}
     end,
+        add_to_deck = function(self, card, from_debuff)
+		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
+		local mod = card.ability.extra.merchant
+		 G.jokers.config.card_limit = G.jokers.config.card_limit + 2
+		 G.consumeables.config.card_limit = G.consumeables.config.card_limit + 1
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
+		local mod = card.ability.extra.merchant
+		 G.jokers.config.card_limit = G.jokers.config.card_limit - 2
+		 G.consumeables.config.card_limit = G.consumeables.config.card_limit - 1
+	end,
+
 }
 
 SMODS.Joker{
@@ -659,54 +766,6 @@ SMODS.Joker{
           end
             end
     end,
-}
-
-SMODS.Joker{
-  key = 'thepickaxe',
-  loc_txt = {
-    name = 'The Pickaxe',
-    text = {
-     "Each {C:diamonds}Diamond{} card discarded",
-                    "has a {C:green}#1# in #2#{} chance to be", 
-                    "destroyed and permanently",
-                    "increase {C:attention}Blind Payout{} by {C:money}$#3#{}",
-                    "{C:inactive}(Currently {C:money}$#4#{C:inactive})",
-         }
-    },
-    rarity = 3,
-    atlas = "jokersplusupdatepack2", pos = {x = 0, y = 0},
-    cost = 8,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    blueprint_compat = false,
-    perishable_compat = false,
-    config = {extra = {odds = 4, money_add = 1, money = 0,}},
-    loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.money_add, card.ability.extra.money}}
-    end,
-    calculate = function(self, card, context)
-      if context.discard and
-            not context.other_card.debuff then            
-        if context.other_card:is_suit('Diamonds') and not context.blueprint then
-            if pseudorandom('thepickaxe') < G.GAME.probabilities.normal / card.ability.extra.odds then
-               card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_add
-              return {
-                play_sound('whoosh1', math.random()*0.1 + 0.6,0.3),
-                message = "Mined",
-                colour = G.C.ORANGE,
-                remove = true,
-                card = card
-            }
-           end
-        end
-      end
-    end,
-calc_dollar_bonus = function(self, card)
-    local bonus = card.ability.extra.money
-    if bonus > 0 then return bonus
-    end
-end
 }
 
 SMODS.Joker{
@@ -770,6 +829,54 @@ SMODS.Joker{
        end
 
     end,
+}
+
+SMODS.Joker{
+  key = 'thepickaxe',
+  loc_txt = {
+    name = 'The Pickaxe',
+    text = {
+     "Each {C:diamonds}Diamond{} card discarded",
+                    "has a {C:green}#1# in #2#{} chance to be", 
+                    "destroyed and permanently",
+                    "increase {C:attention}Blind Payout{} by {C:money}$#3#{}",
+                    "{C:inactive}(Currently {C:money}$#4#{C:inactive})",
+         }
+    },
+    rarity = 3,
+    atlas = "jokersplusupdatepack2", pos = {x = 0, y = 0},
+    cost = 8,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = false,
+    perishable_compat = false,
+    config = {extra = {odds = 4, money_add = 1, money = 0,}},
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.money_add, card.ability.extra.money}}
+    end,
+    calculate = function(self, card, context)
+      if context.discard and
+            not context.other_card.debuff then            
+        if context.other_card:is_suit('Diamonds') and not context.blueprint then
+            if pseudorandom('thepickaxe') < G.GAME.probabilities.normal / card.ability.extra.odds then
+               card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_add
+              return {
+                play_sound('whoosh1', math.random()*0.1 + 0.6,0.3),
+                message = "Mined",
+                colour = G.C.ORANGE,
+                remove = true,
+                card = card
+            }
+           end
+        end
+      end
+    end,
+calc_dollar_bonus = function(self, card)
+    local bonus = card.ability.extra.money
+    if bonus > 0 then return bonus
+    end
+end
 }
 
 SMODS.Joker{
@@ -1014,4 +1121,3 @@ SMODS.Challenge{
       }
     },
 }
-
