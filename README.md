@@ -204,6 +204,20 @@ Cost: $5
 
 -----
 
+*****NEW with Joker Update 6*****
+
+-- PAC-MAN --
+
+<img width="142" height="190" alt="PacManJokerArt" src="https://github.com/user-attachments/assets/4bc678c3-e8d3-4a43-bace-1700082b2404" />
+
+Rarity: Uncommon
+
+Cost: $6
+
+"2.5X Mult, Extra Lives: 2, -1 life if hand played contains a scoring (Random Suit), suit changes at end of round, +1UP when Boss Blind is defeated"
+
+-----
+
 Now with 6 added challenges!
 -----
 Challenges include: "Card Collector", "Jinxed", "Mine-crafting", "READY", "The Legend of Jimbo", & "Wild Wasteland"
