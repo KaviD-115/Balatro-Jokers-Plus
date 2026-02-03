@@ -232,9 +232,8 @@ Then, place the file into your mod folder and Extract all files from the folder
 
 -----
 
-![20260127183927_1](https://github.com/user-attachments/assets/87bf3ab4-0397-4224-afc6-03b8ba758be4)
-![20260127183934_1](https://github.com/user-attachments/assets/03985a5c-3203-4a73-9288-e3e198fa4137)
-
+![20260202220104_1](https://github.com/user-attachments/assets/4a96ee7a-847d-42ac-b0cb-8a89b3cd001a)
+![20260202220117_1](https://github.com/user-attachments/assets/a164652a-4258-4fca-bf77-5c7ffe7e8049)
 
 Joker Artwork and Coding by me (KaviD 115), Cover Art for the mod by my Wife
 
