@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.3
+--- VERSION: 1.8.4
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -269,7 +269,7 @@ SMODS.Joker{
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = 4,},
+    config = {extra = 2,},
     -- Sets the sprite and hitbox
     set_ability = function(self, card, initial, delay_sprites)
         local w_scale, h_scale = 81/71, 137/95
@@ -293,13 +293,14 @@ SMODS.Joker{
     end,
 
     loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra / 2,}}
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra}}
   end,
     calculate = function(self, card, context)
       if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-        local poll = pseudorandom(pseudoseed('pjaten'))
-      if poll  < G.GAME.probabilities.normal / card.ability.extra then
-          return {
+        if pseudorandom('pjatn') < G.GAME.probabilities.normal / card.ability.extra then
+         local d100 = pseudorandom(pseudoseed('pjatnd100'), 1, 100)
+           if d100 <= 50 then
+               return {
           G.E_MANAGER:add_event(Event({
                         func = function() 
                             local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_aura', 'sup')
@@ -308,8 +309,9 @@ SMODS.Joker{
                             return true 
                         end}))
                  }
-        elseif poll < (G.GAME.probabilities.normal * 2) / card.ability.extra then
-          return {
+           end
+           if d100 > 50 then
+               return {
           G.E_MANAGER:add_event(Event({
                         func = function() 
                             local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_wheel_of_fortune', 'sup')
@@ -318,6 +320,7 @@ SMODS.Joker{
                             return true 
                         end})) 
                 }              
+           end
             end
         end
     end,
@@ -1144,6 +1147,7 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
 
