@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.1
+--- VERSION: 1.8.2
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -201,12 +201,10 @@ SMODS.Joker{
   loc_txt = {
     name = 'The Lemnisc8',
     text = {
-     "This Joker Gains {C:mult}+#3#{} Mult",
-			"for each {C:attention}8{} scored",
-			"and {C:chips}+#4#{} Chips for",
-			"each {C:attention}8{} discarded",
-			"{C:inactive}(Currently",
-			"{C:mult}+#1#{C:inactive} Mult / {C:chips}+#2# {C:inactive}Chips)",
+     "This Joker gains",
+                        "{C:chips}+#4#{} Chips for each {C:attention}8{} discarded",
+			"and {C:mult}+#3#{} Mult for each {C:attention}8{} scored",
+			"{C:inactive}(Currently {C:chips}+#2# {C:inactive}Chips / {C:mult}+#1#{C:inactive} Mult)",
          }
     },
     rarity = 1,
@@ -226,8 +224,9 @@ SMODS.Joker{
         if context.other_card:get_id() == 8 and not context.blueprint then
           card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
       return {
-        card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT,}),
-        card = card
+                message = localize('k_upgrade_ex'),
+                colour = G.C.MULT,
+                message_card = card
             }
         end
 	elseif context.discard and
@@ -243,13 +242,11 @@ SMODS.Joker{
           end
         end
       if context.joker_main then
-	card_eval_status_text(card,'chips',card.ability.extra.chips, nil, nil)
-        return {
-          mult_mod = card.ability.extra.mult,
-          message = localize{type = 'variable', key = 'a_mult', vars = {card.ability.extra.mult}},
-          chip_mod = card.ability.extra.chips,
-      }
-      end
+			return{
+				mult = card.ability.extra.mult,
+                                chips = card.ability.extra.chips,
+			}
+		end
     end
 }
 
@@ -1128,5 +1125,6 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
