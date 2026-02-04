@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.4
+--- VERSION: 1.8.5
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -882,15 +882,16 @@ SMODS.Joker{
     return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.money_add, card.ability.extra.money}}
     end,
     calculate = function(self, card, context)
-      if context.discard and
+      if context.discard and 
             not context.other_card.debuff then            
         if context.other_card:is_suit('Diamonds') and not context.blueprint then
             if pseudorandom('thepickaxe') < G.GAME.probabilities.normal / card.ability.extra.odds then
                card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_add
               return {
-                play_sound('whoosh1', math.random()*0.1 + 0.6,0.3),
-                message = "Mined",
-                colour = G.C.ORANGE,
+                play_sound('slice1', math.random()*0.1 + 0.6,0.3),
+                message = localize('k_upgrade_ex'),
+                delay = 0.45,
+                colour = G.C.MONEY,
                 remove = true,
                 card = card
             }
@@ -1147,6 +1148,7 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
 
