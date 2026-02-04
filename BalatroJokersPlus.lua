@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.2
+--- VERSION: 1.8.3
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -331,7 +331,7 @@ SMODS.Joker{
      "Generate {C:attention}2{} copies of a single",
                     "random {C:tarot}Tarot{} card when",
                     "{C:attention}Boss Blind{} is defeated",
-                    "{C:inactive}(Requires only 1 open slot)"
+                    "{C:inactive}(Must have room)"
          }
     },
     rarity = 1,
@@ -344,7 +344,7 @@ SMODS.Joker{
     perishable_compat = true,
     calculate = function(self, card, context)
         if context.end_of_round and not context.individual and not context.repetition and not context.blueprint and G.GAME.blind.boss and not self.gone then
-          if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+          if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit - 1 then
              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1 
 				G.E_MANAGER:add_event(Event({
 					trigger = 'before',
@@ -364,6 +364,25 @@ SMODS.Joker{
 					colour = G.C.BLUE,
 					card = card
 				}
+                 else if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1 
+				G.E_MANAGER:add_event(Event({
+					trigger = 'before',
+					delay = 0.0,
+					func = (function()
+							local _card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'mmx')
+							_card:add_to_deck()
+							G.consumeables:emplace(_card)
+							G.GAME.consumeable_buffer = 0 
+						return true
+					end)}))
+				return {
+					message = ('YOU GET'),
+					colour = G.C.BLUE,
+					card = card
+				}
+               end
+
 	  end
        end
 end,
@@ -1125,6 +1144,7 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
 
