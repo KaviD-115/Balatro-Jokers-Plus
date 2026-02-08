@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.5
+--- VERSION: 1.8.6
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -692,7 +692,8 @@ SMODS.Joker{
     eternal_compat = false,
     blueprint_compat = false,
     perishable_compat = false,
-    config = {extra = {rounds_needed = 3, rounds = 0, Xmult = 0.75,}},
+    config = {extra = {rounds_needed = 3, rounds = 0, Xmult = 0.5,}},
+    no_pool_flag = 'vboy_extinct',
     loc_vars = function(self, info_queue, card)
     return {vars = {card.ability.extra.rounds_needed, card.ability.extra.rounds, card.ability.extra.Xmult,}}
  end,
@@ -709,6 +710,7 @@ SMODS.Joker{
                     colour = G.C.FILTER
                 }
             elseif context.selling_self and card.ability.extra.rounds >= card.ability.extra.rounds_needed then
+              G.GAME.pool_flags.vboy_extinct = true
               G.E_MANAGER:add_event(Event({
                         func = function()  
                             local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_soul', 'sup')
@@ -1148,7 +1150,6 @@ SMODS.Challenge{
       }
     },
 }
-
 
 
 
