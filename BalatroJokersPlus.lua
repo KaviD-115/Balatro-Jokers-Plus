@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.8.6
+--- VERSION: 1.9.0
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -68,6 +68,13 @@ SMODS.Atlas({
 SMODS.Atlas({ 
     key = "pacmanjoker",
     path = "PacManJokerArt.png", 
+    px = 71,
+    py = 95,
+})
+
+SMODS.Atlas({ 
+    key = "soaringsevensjoker",
+    path = "Soaring7sJokerArt.png", 
     px = 71,
     py = 95,
 })
@@ -154,48 +161,70 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
-  key = 'interstellar',
+  key = 'soaringsevens',
   loc_txt = {
-    name = 'Interstellar',
+    name = 'Soaring Sevens',
     text = {
-     '{C:green}#1# in #2#{} chance for each',
-     'played {C:attention}7{} to create a',
-     '{C:spectral}Black Hole{} when scored',
+     'Each played {C:attention}7{} has a {C:green}#1# in #3#{} chance',
+     'to create a {C:planet}Planet{} card',
+     'and a {C:green}#2# in #4#{} chance to create a',
+     '{C:dark_edition}Negative{} {C:spectral}Black Hole{} when scored',        
         }
     },
-    rarity = 2,
-    atlas = "jokersplus", pos = {x = 3, y = 0},
-    cost = 7,
+    rarity = 1,
+    atlas = "soaringsevensjoker", pos = {x = 0, y = 0},
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     blueprint_compat = true,
     perishable_compat = true,
-    config = {extra = 7},
+    config = { extra = { planet_odds = 4, blackhole_odds = 15} },
     loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal,card.ability.extra,}}
-  end,
+        local planet_numerator, planet_denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.planet_odds, 'interstellar_planet')
+        local blackhole_numerator, blackhole_denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.blackhole_odds, 'interstellar_blackhole')
+        return { vars = { planet_numerator, blackhole_numerator, planet_denominator, blackhole_denominator, } }
+    end,
     calculate = function(self, card, context)
-                    if context.individual and context.cardarea == G.play then
-            if context.other_card:get_id() == 7 and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-        if pseudorandom('SoaringSevens') < G.GAME.probabilities.normal/card.ability.extra then
-         G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-          G.E_MANAGER:add_event(Event({
-                            trigger = 'before',
-                            delay = 0.0,
-                            func = function() 
-                            local c = create_card(G.consumeables, nil, nil, nil, nil, nil, 'c_black_hole', 'sup')
+        if context.individual and context.cardarea == G.play then
+            if (context.other_card:get_id() == 7) then
+                   if SMODS.pseudorandom_probability(card, 'interstellar_planet', 1, card.ability.extra.planet_odds) then
+                     if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+           G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+          G.E_MANAGER:add_event(Event({    
+                            trigger = "after",
+                            delay = 0.25,
+                            func = (function()
+                            SMODS.add_card {
+                                        set = 'Planet',}
+                            SMODS.calculate_effect({message = '+1 Planet', colour = G.C.SECONDARY_SET.Planet,  instant = true}, card)
+                            G.GAME.consumeable_buffer = 0
+                            return true
+                            end)}))
+                     end
+                   end
+                if SMODS.pseudorandom_probability(card, 'interstellar_blackhole', 1, card.ability.extra.blackhole_odds) then
+                        return {
+                extra = {
+                message = "+1 Blackhole",
+                colour = G.C.SECONDARY_SET.Spectral,
+                message_card = card,
+            func = function()
+          G.E_MANAGER:add_event(Event({    
+                            func = (function()
+                            trigger = 'before'
+                            local c = create_card('Spectral', G.consumeables, nil, nil, nil, nil, 'c_black_hole', 'sup')
+                            c:set_edition({negative = true}, true)
                             c:add_to_deck()
                             G.consumeables:emplace(c)
-                            G.GAME.consumeable_buffer = 0
-                            return true 
-                        end})) 
-                  end 
-             end
-        end
-   end,
+                            return true
+                            end)}))
+                        end},}
+                     end
+                 end
+           end
+        end,
 }
-
 SMODS.Joker{
   key = 'thelemnisc8',
   loc_txt = {
@@ -261,9 +290,9 @@ SMODS.Joker{
                         "{C:inactive}(Must have room)"
          }
     },
-    rarity = 2,
+    rarity = 3,
     atlas = "jokersplus2", pos = {x = 1, y = 0},
-    cost = 6,
+    cost = 10,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -1150,6 +1179,7 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
 
