@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 1.9.0
+--- VERSION: 1.9.1
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -764,22 +764,23 @@ SMODS.Joker{
     text = {
      "{C:dark_edition}+2{} Joker Slots",
      "{C:attention}+1{} consumable slot",
-		"{C:inactive}What're ya buyin?",
+     "{C:green}#1# in #3#{} chance to set money to {C:money}$0{}",
+     "when any {C:attention}Booster Pack{} is opened",
          }
     },
     rarity = 3,
     atlas = "jokersplusupdatepack3", pos = {x = 0, y = 0},
-    cost = 10,
+    cost = 8,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     blueprint_compat = false,
     perishable_compat = false,
-    config = {extra = {merchant = 1}},
+    config = {extra = {merchant = 1, odds = 4,}},
     loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.merchant}}
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.merchant, card.ability.extra.odds,}}
     end,
-        add_to_deck = function(self, card, from_debuff)
+    add_to_deck = function(self, card, from_debuff)
 		card.ability.extra.merchant = math.floor(card.ability.extra.merchant)
 		local mod = card.ability.extra.merchant
 		 G.jokers.config.card_limit = G.jokers.config.card_limit + 2
@@ -791,7 +792,19 @@ SMODS.Joker{
 		 G.jokers.config.card_limit = G.jokers.config.card_limit - 2
 		 G.consumeables.config.card_limit = G.consumeables.config.card_limit - 1
 	end,
-
+    calculate = function(self, card, context)
+      if context.open_booster and not context.blueprint then
+         if pseudorandom('whatareyabuyin') < G.GAME.probabilities.normal / card.ability.extra.odds then
+          ease_dollars(-G.GAME.dollars, true)
+            return {
+                  message  = localize('k_reset'),
+                  delay = 0.65,
+                  colour = G.C.MONEY,
+                  card = card,
+            }
+         end
+      end
+   end,
 }
 
 SMODS.Joker{
@@ -1179,9 +1192,3 @@ SMODS.Challenge{
       }
     },
 }
-
-
-
-
-
-
