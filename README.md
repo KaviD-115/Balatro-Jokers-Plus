@@ -4,14 +4,18 @@
 
 ***Features***
 -----
-- **17 NEW Jokers** - *(Original and Crossover Jokers from other Game Series)*
-- **6 NEW Challenges**
+- **20 NEW Jokers** - *(Original and Crossover Jokers from other Game Series)*
+- **10 NEW Challenges**
 -----
 ***Joker Art***
 ----- 
 ![PhantomJokerArtplus](https://github.com/user-attachments/assets/a2e1ab8a-fbbd-4159-98a9-65e037c1797a) ![SixandStonesJokerArtplus](https://github.com/user-attachments/assets/89d69034-e9dd-432c-9f5f-b09da2a9e0be)<img width="142" height="190" alt="Soaring7sJokerArt" src="https://github.com/user-attachments/assets/5c871953-bb8a-40b0-ade1-eb6967f43245" />
   ![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7) <img width="142" height="240" alt="PSA10JokerArtDisp" src="https://github.com/user-attachments/assets/97a45f5c-cf4a-424d-9fb7-88d99813b5e5" />
-![PlumberJokerArt7X2](https://github.com/user-attachments/assets/33c39395-6592-4716-9101-101c5a6b06aa) ![CottonCandyJokerArt12X2](https://github.com/user-attachments/assets/f7a5e290-2e34-4ada-b366-dbbff1596571) ![WildWestJokerArt7X2](https://github.com/user-attachments/assets/5ecd7709-db26-4b93-969d-ce557d3bb5e6) ![PickaxeJokerArt142x](https://github.com/user-attachments/assets/4f49b056-bddd-4f3d-892b-d3d913dac240) ![20260203055714_1](https://github.com/user-attachments/assets/71c21e68-06b2-4c64-ac31-0d486c645b8d) ![Raygun935Joker192x](https://github.com/user-attachments/assets/945edc00-c1e6-4893-a9a4-d10308180807) ![MegaManXJokerArt62X](https://github.com/user-attachments/assets/b20d55f4-6ba7-4ba2-97de-09ca3fdb35dc) ![REAttacheCaseJokerArt102X](https://github.com/user-attachments/assets/8c0ac146-7e3b-4a0a-9c1f-464040be74c6) ![RocketLeagueJokerArt112x](https://github.com/user-attachments/assets/3dcd2214-ae09-4c16-a04d-1c2ec87031ad) ![VaultBoyJokerArt102x](https://github.com/user-attachments/assets/b9f34b29-a3cc-4f53-a483-509a2e6e1d45) <img width="142" height="190" alt="RupeesJoker" src="https://github.com/user-attachments/assets/8987466f-a462-419c-91ba-d21a19b2f1a8" /> <img width="142" height="190" alt="PacManJokerArt" src="https://github.com/user-attachments/assets/4bc678c3-e8d3-4a43-bace-1700082b2404" />
+![PlumberJokerArt7X2](https://github.com/user-attachments/assets/33c39395-6592-4716-9101-101c5a6b06aa) ![CottonCandyJokerArt12X2](https://github.com/user-attachments/assets/f7a5e290-2e34-4ada-b366-dbbff1596571) ![WildWestJokerArt7X2](https://github.com/user-attachments/assets/5ecd7709-db26-4b93-969d-ce557d3bb5e6) ![PickaxeJokerArt142x](https://github.com/user-attachments/assets/4f49b056-bddd-4f3d-892b-d3d913dac240) ![20260203055714_1](https://github.com/user-attachments/assets/71c21e68-06b2-4c64-ac31-0d486c645b8d) ![Raygun935Joker192x](https://github.com/user-attachments/assets/945edc00-c1e6-4893-a9a4-d10308180807) ![MegaManXJokerArt62X](https://github.com/user-attachments/assets/b20d55f4-6ba7-4ba2-97de-09ca3fdb35dc) ![REAttacheCaseJokerArt102X](https://github.com/user-attachments/assets/8c0ac146-7e3b-4a0a-9c1f-464040be74c6) ![RocketLeagueJokerArt112x](https://github.com/user-attachments/assets/3dcd2214-ae09-4c16-a04d-1c2ec87031ad) ![VaultBoyJokerArt102x](https://github.com/user-attachments/assets/b9f34b29-a3cc-4f53-a483-509a2e6e1d45) <img width="142" height="190" alt="RupeesJokerArt" src="https://github.com/user-attachments/assets/09907e6a-854f-4f3e-829f-7ada82b1e607" />
+ <img width="142" height="190" alt="PacManJokerArt" src="https://github.com/user-attachments/assets/4bc678c3-e8d3-4a43-bace-1700082b2404" /> <img width="142" height="190" alt="MarioPartyJokerArt" src="https://github.com/user-attachments/assets/5f2de06c-83bd-4f27-b8ad-88dfa2dbb54c" /><img width="142" height="190" alt="CupheadJokerArt" src="https://github.com/user-attachments/assets/89e45999-2aeb-4a6d-8aa5-c4b3c379d8b2" /> <img width="142" height="190" alt="ExcitebikeJokerArt" src="https://github.com/user-attachments/assets/52fa798a-2941-450d-9d99-b0e961f36e33" />
+
+
+
 
 ***Credits***
 -----
