@@ -116,7 +116,6 @@ SMODS.Joker{
     calculate = function(self, card, context)
       if context.open_booster and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
         if pseudorandom('pjatn') < G.GAME.probabilities.normal / card.ability.extra then
-          G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
          local d100 = pseudorandom(pseudoseed('pjatnd100'), 1, 100)
            if d100 <= 50 then
                return {
@@ -1539,4 +1538,5 @@ SMODS.Challenge{
       }
     },
 }
+
 
