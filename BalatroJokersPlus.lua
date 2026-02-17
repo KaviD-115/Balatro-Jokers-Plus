@@ -118,23 +118,27 @@ SMODS.Joker{
         if pseudorandom('pjatn') < G.GAME.probabilities.normal / card.ability.extra then
          local d100 = pseudorandom(pseudoseed('pjatnd100'), 1, 100)
            if d100 <= 50 then
+              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                return {
           G.E_MANAGER:add_event(Event({
                         func = function() 
                             local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_aura', 'sup')
                             c:add_to_deck()
                             G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
                             return true 
                         end}))
                  }
            end
            if d100 > 50 then
+              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                return {
           G.E_MANAGER:add_event(Event({
                         func = function() 
                             local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_wheel_of_fortune', 'sup')
                             c:add_to_deck()
                             G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
                             return true 
                         end})) 
                 }              
@@ -1538,5 +1542,6 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
