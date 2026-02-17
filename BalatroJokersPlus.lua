@@ -1210,6 +1210,37 @@ SMODS.Joker{
 --Challenges
 
 SMODS.Challenge{
+    loc_txt = "Bingo Party! (BJ+)",
+    key = 'mpevil4',
+    rules = {
+        custom = {
+        { id = 'no_reward' },
+        { id = 'all_eternal' },
+},
+        modifiers = {
+        {id = 'dollars',  value = 20 },
+        }
+    },
+    jokers = {
+        {id = 'j_PlusJokers_attachecase', eternal = true},
+        {id = 'j_PlusJokers_marioparty', eternal = true},
+    },
+    consumeables = {},
+    vouchers = {
+},
+    restrictions = {
+        banned_cards = {
+        {id = 'j_credit_card'},
+        {id = 'j_rocket'},
+        {id = 'j_satellite'},
+        {id = 'j_PlusJokers_thepickaxe'},
+},
+        banned_tags = {},
+        banned_other = {},
+    },
+    }
+
+SMODS.Challenge{
     loc_txt = "Card Collector (BJ+)",
     key = 'cardcollector',
     rules = {
@@ -1243,7 +1274,7 @@ SMODS.Challenge{
         { id = 'discard_cost', value = 2 },
 },
         modifiers = {
-            {id = 'dollars',  value = 20 },
+            {id = 'dollars',  value = 15 },
         }
     },
     jokers = {
@@ -1361,6 +1392,42 @@ SMODS.Challenge{
     }
 
 SMODS.Challenge{
+    loc_txt = "The Legend of Jimbo (BJ+)",
+    key = 'legendofjimbo',
+    rules = {
+        custom = {
+            {id = 'no_reward_specific', value = 'Small'},
+	    {id = 'no_extra_hand_money'},
+            {id = 'no_interest'},
+},
+        modifiers = {
+            {id = "dollars", value = 0},
+        },
+},
+    jokers = {
+        {id = 'j_PlusJokers_rupees', eternal = true},
+        {id = 'j_joker', eternal = true},
+    },
+    consumeables = {{id = 'c_talisman'},
+},
+    vouchers = {
+},
+    restrictions = {
+        banned_cards = {{id = 'j_rocket'},
+            {id = 'j_golden'},
+            {id = 'j_satellite'},
+            {id = 'v_recyclomancy'},
+            {id = 'v_seed_money'},
+            {id = 'v_money_tree'},
+            {id = 'j_PlusJokers_thepickaxe'},},
+        banned_tags = {
+            {id = 'tag_investment'},
+},
+        banned_other = {},
+    },
+    }
+
+SMODS.Challenge{
     loc_txt = "Mine-crafting (BJ+)",
     key = 'minecrafting',
     rules = {
@@ -1425,64 +1492,6 @@ SMODS.Challenge{
     }
 
 SMODS.Challenge{
-    loc_txt = "Resident Party! (BJ+)",
-    key = 'mpevil4',
-    rules = {
-        custom = {},
-        modifiers = {
-        }
-    },
-    jokers = {
-        {id = 'j_credit_card'},
-        {id = 'j_PlusJokers_attachecase', eternal = true},
-        {id = 'j_PlusJokers_marioparty', eternal = true},
-    },
-    consumeables = {},
-    vouchers = {
-},
-    restrictions = {
-        banned_cards = {},
-        banned_tags = {},
-        banned_other = {},
-    },
-    }
-
-SMODS.Challenge{
-    loc_txt = "The Legend of Jimbo (BJ+)",
-    key = 'legendofjimbo',
-    rules = {
-        custom = {
-            {id = 'no_reward_specific', value = 'Small'},
-	    {id = 'no_extra_hand_money'},
-            {id = 'no_interest'},
-},
-        modifiers = {
-            {id = "dollars", value = 0},
-        },
-},
-    jokers = {
-        {id = 'j_PlusJokers_rupees', eternal = true},
-        {id = 'j_joker', eternal = true},
-    },
-    consumeables = {{id = 'c_talisman'},
-},
-    vouchers = {
-},
-    restrictions = {
-        banned_cards = {{id = 'j_rocket'},
-            {id = 'j_golden'},
-            {id = 'j_satellite'},
-            {id = 'v_recyclomancy'},
-            {id = 'v_seed_money'},
-            {id = 'v_money_tree'},},
-        banned_tags = {
-            {id = 'tag_investment'},
-},
-        banned_other = {},
-    },
-    }
-
-SMODS.Challenge{
     loc_txt = "WALLOP! (BJ+)",
     key = 'wallop',
     rules = {
@@ -1542,6 +1551,3 @@ SMODS.Challenge{
       }
     },
 }
-
-
-
