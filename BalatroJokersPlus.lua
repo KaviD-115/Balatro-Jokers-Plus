@@ -2,7 +2,7 @@
 --- MOD_NAME: Balatro Jokers PLUS
 --- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
---- MOD_DESCRIPTION: Adds Vanilla-esque Jokers and Crossover Jokers from other Game Series
+--- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 10 Challenges.
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
 --- VERSION: 2.0.2
@@ -1551,4 +1551,5 @@ SMODS.Challenge{
       }
     },
 }
+
 
