@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 10 Challenges.
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 2.0.2
+--- VERSION: 2.0.3
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -709,7 +709,7 @@ SMODS.Joker{
     discovered = true,
     eternal_compat = true,
     blueprint_compat = true,
-    perishable_compat = true,
+    perishable_compat = false,
     config = {extra = {mult = 0, mult_gain = 2, d_remaining = 0}},
     loc_vars = function(self, info_queue, card)
         return {vars = {card.ability.extra.mult, card.ability.extra.mult_gain, card.ability.extra.d_remaining}}
@@ -1551,5 +1551,6 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
