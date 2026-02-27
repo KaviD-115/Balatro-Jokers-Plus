@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 10 Challenges.
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 2.0.3
+--- VERSION: 2.0.4
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -81,7 +81,7 @@ SMODS.Joker{
     },
     rarity = 3,
     atlas = "jokersplus2", pos = {x = 1, y = 0},
-    cost = 10,
+    cost = 8,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -159,7 +159,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplus", pos = {x = 1, y = 0},
-    cost = 6,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -256,7 +256,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplus", pos = {x = 0, y = 0},
-    cost = 6,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -310,7 +310,7 @@ SMODS.Joker{
     },
     rarity = 2,
     atlas = "jokersplus", pos = {x = 2, y = 0},
-    cost = 7,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -361,7 +361,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplusupdatepack4", pos = {x = 1, y = 0},
-    cost = 4,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = false,
@@ -419,7 +419,7 @@ SMODS.Joker{
     },
     rarity = 1,
     atlas = "jokersplusupdatepack2", pos = {x = 1, y = 0},
-    cost = 5,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -920,7 +920,7 @@ SMODS.Joker{
     },
     rarity = 3,
     atlas = "jokersplusupdatepack4", pos = {x = 0, y = 0},
-    cost = 8,
+    cost = 10,
     unlocked = true,
     discovered = true,
     eternal_compat = false,
@@ -1102,6 +1102,14 @@ SMODS.Joker{
         }
           end
             end
+    end,
+    in_pool = function(self, args)
+        for _, playing_card in ipairs(G.playing_cards or {}) do
+            if SMODS.has_enhancement(playing_card, 'm_stone') or SMODS.has_enhancement(playing_card, 'm_wild') then
+                return true
+            end
+        end
+        return false
     end,
 }
 
@@ -1551,6 +1559,7 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
 
