@@ -2,10 +2,10 @@
 --- MOD_NAME: Balatro Jokers PLUS
 --- MOD_ID: BalatroJokersPLUS
 --- MOD_AUTHOR: [KaviD]
---- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 10 Challenges.
+--- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 2 Decks and 10 Challenges.
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 2.0.4
+--- VERSION: 2.1.0
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -65,8 +65,14 @@ SMODS.Atlas({
     py = 95,
 })
 
+SMODS.Atlas({ 
+    key = "jokersplusdecks",
+    path = "jokersplusdecks.png", 
+    px = 71,
+    py = 95,
+})
 
-
+--Jokers
 
 SMODS.Joker{
   key = 'pjaten',
@@ -1215,6 +1221,129 @@ SMODS.Joker{
     end,
 }
 
+--Decks
+
+SMODS.Back {
+    key = "secrettape",
+     loc_txt = {
+     name = "Secret Tape Deck",
+                text = {
+                    "Start run with the",
+                    "{C:attention,T:v_directors_cut}#1#{} voucher",
+                    "and an extra {C:money}$#2#{}",
+                    "{C:red}#3#{} Joker slot",
+                    
+                    }
+                },
+    atlas = 'jokersplusdecks',
+    pos = { x = 0, y = 0 },
+    config = { voucher = 'v_directors_cut', dollars = 6, joker_slot = -1 },
+    unlocked = true,
+    loc_vars = function(self, info_queue, back)
+        return {
+            vars = { localize { type = 'name_text', key = self.config.voucher, set = 'Voucher' },
+                self.config.dollars,
+                self.config.joker_slot,
+            }
+        }
+    end,
+[[
+    apply = function(self, back)
+        -- Apply the voucher
+        G.GAME.used_vouchers[self.config.voucher] = true
+        G.GAME.starting_voucher_count = (G.GAME.starting_voucher_count or 0) + 1
+        G.E_MANAGER:add_event(Event({ -- Adding back objects of any type from a deck MUST be done within an event
+            func = function()
+                back.apply_to_run(nil, G.P_CENTERS[self.config.voucher])
+                return true
+            end
+        }))
+    end,
+    ]]
+}
+
+
+SMODS.Back {
+    key = "sealed",
+     loc_txt = {
+     name = "Seal Deck",
+                text = {
+                    "After defeating each",
+                    "{C:attention}Boss Blind{}, gain a",
+                    "random {C:dark_edition}Negative{} {C:spectral}Spectral{}",
+                    "card that creates a {C:red,T:c_deja_vu}Red{},",
+                    "{C:blue,T:c_trance}Blue{}, {C:purple,T:c_medium}Purple{}, or {C:attention,T:c_talisman}Gold Seal{}",
+                    }
+                },
+    atlas = 'jokersplusdecks',
+    pos = { x = 1, y = 0 },
+    unlocked = true,
+    calculate = function(self, back, context)
+        if context.round_eval and G.GAME.last_blind and G.GAME.last_blind.boss then
+           local d100 = pseudorandom(pseudoseed('sealsearch'), 1, 100)
+           if d100 <= 25 then
+              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+               return {
+          G.E_MANAGER:add_event(Event({
+                        func = function() 
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_talisman', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
+                            return true 
+                        end}))
+                 }
+           end
+
+           if d100 > 25 and d100 <= 50 then
+              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+               return {
+          G.E_MANAGER:add_event(Event({
+                        func = function() 
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_deja_vu', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
+                            return true 
+                        end}))
+                 }
+           end
+
+           if d100 > 50 and d100 <= 75 then
+              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+               return {
+          G.E_MANAGER:add_event(Event({
+                        func = function() 
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_trance', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
+                            return true 
+                        end}))
+                 }
+           end
+
+           if d100 > 75 then
+              G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+               return {
+          G.E_MANAGER:add_event(Event({
+                        func = function() 
+                            local c = create_card(nil,G.consumeables, nil, nil, nil, nil, 'c_medium', 'sup')
+                            c:set_edition({negative = true}, true)
+                            c:add_to_deck()
+                            G.consumeables:emplace(c)
+                            G.GAME.consumeable_buffer = 0
+                            return true 
+                        end}))
+                 }
+           end
+         end
+       end,
+     }
+
 --Challenges
 
 SMODS.Challenge{
@@ -1559,6 +1688,7 @@ SMODS.Challenge{
       }
     },
 }
+
 
 
 
