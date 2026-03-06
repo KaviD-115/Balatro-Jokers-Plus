@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 2 Decks and 10 Challenges.
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 2.1.1
+--- VERSION: 2.1.2
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -702,9 +702,10 @@ SMODS.Joker{
   loc_txt = {
     name = 'Excitebike',
         text = {
-     "This Joker gains {C:mult}+#2#{} Mult for each",
-     "{C:attention}discard{} used during this round, resets",
-                    "if {C:attention}final discard{} of round is used",
+     "This Joker gains {C:mult}+#2#{} Mult for",
+     "each {C:attention}discard{} used during",
+                    "this round, resets if {C:attention}final{}",
+                    "{C:attention}discard{} of round is used",
                     "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)",
          }
     },
@@ -1687,4 +1688,3 @@ SMODS.Challenge{
       }
     },
 }
-
