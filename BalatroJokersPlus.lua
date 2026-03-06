@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced Joker Pack, featuring 20 Jokers (Original and Crossover Jokers from Iconic Videogames) PLUS 2 Decks and 10 Challenges.
 --- BADGE_COLOR: 465F85
 --- DISPLAY_NAME: Balatro Jokers PLUS
---- VERSION: 2.1.0
+--- VERSION: 2.1.1
 --- PREFIX: PlusJokers
 
 SMODS.Atlas({
@@ -1270,9 +1270,8 @@ SMODS.Back {
                 text = {
                     "After defeating each",
                     "{C:attention}Boss Blind{}, gain a",
-                    "random {C:dark_edition}Negative{} {C:spectral}Spectral{}",
-                    "card that creates a {C:red,T:c_deja_vu}Red{},",
-                    "{C:blue,T:c_trance}Blue{}, {C:purple,T:c_medium}Purple{}, or {C:attention,T:c_talisman}Gold Seal{}",
+                    "{C:dark_edition}Negative{} {C:red,T:c_deja_vu}Deja Vu{}, {C:blue,T:c_trance}Trance{},",
+                    "{C:purple,T:c_medium}Medium{}, or {C:attention,T:c_talisman}Talisman{} card",
                     }
                 },
     atlas = 'jokersplusdecks',
@@ -1688,8 +1687,4 @@ SMODS.Challenge{
       }
     },
 }
-
-
-
-
 
