@@ -37,7 +37,7 @@ Joker artwork and coding by me (KaviD 115)
 -----
 To download, follow the instructions in the image below:
 
-(Image Pending)
+<img width="1887" height="817" alt="WorldsCollideHowToDownload" src="https://github.com/user-attachments/assets/58260026-047b-4b10-9d77-42fe351be9f3" />
 
 then, place the file into your mod folder and extract all files from the folder and enjoy!
 
