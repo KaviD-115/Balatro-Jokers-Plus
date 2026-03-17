@@ -11,8 +11,8 @@
 ![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7) <img width="142" height="240" alt="PSA10JokerArtDisp" src="https://github.com/user-attachments/assets/97a45f5c-cf4a-424d-9fb7-88d99813b5e5" /> <img width="142" height="190" alt="Plumber2x" src="https://github.com/user-attachments/assets/a0806a43-78dc-4011-b441-820de1f6f7ec" />
 <img width="142" height="190" alt="CottonCandy2x" src="https://github.com/user-attachments/assets/9e832730-5318-46a0-8675-911adc85286a" />
 <img width="142" height="190" alt="WildWest2x" src="https://github.com/user-attachments/assets/53a65df8-6368-4140-bc09-9ef65d030ec8" />
-<img width="142" height="190" alt="ThePickaxe2x" src="https://github.com/user-attachments/assets/d6acf659-352f-45ec-9d0f-a78308089cd2" />
 <img width="142" height="190" alt="Dagonet2x" src="https://github.com/user-attachments/assets/9fa93ec3-fe32-4585-a757-18390c35955d" />
+<img width="142" height="190" alt="GoldenPickaxe2x" src="https://github.com/user-attachments/assets/035c6518-f623-4f2e-843c-8ea181036d6d" />
 <img width="142" height="190" alt="Raygun2x" src="https://github.com/user-attachments/assets/f330b0ef-ba13-450a-8f03-7451182c38c3" />
 ![MegaManXJokerArt62X](https://github.com/user-attachments/assets/b20d55f4-6ba7-4ba2-97de-09ca3fdb35dc) <img width="142" height="190" alt="AttacheCase2x" src="https://github.com/user-attachments/assets/d0fe3a64-1de9-4bd6-bfb6-9b84bab3cb84" /> <img width="142" height="190" alt="Octane2x" src="https://github.com/user-attachments/assets/028a9f42-ecfe-4d24-8786-4dd7e46d011f" /> ![VaultBoyJokerArt102x](https://github.com/user-attachments/assets/b9f34b29-a3cc-4f53-a483-509a2e6e1d45) <img width="142" height="190" alt="Rupees2x" src="https://github.com/user-attachments/assets/c4ca2459-94f6-494a-98ca-fce31f41d47e" />
 <img width="142" height="190" alt="Pacman2x" src="https://github.com/user-attachments/assets/b3667e30-43e0-4b60-bbf6-55dbac8ba28e" />
