@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced mix of original and crossover content from iconic videogames. Features 20 Jokers, 4 Decks, and 10 Challenges.
 --- BADGE_COLOR: EB844D
 --- DISPLAY_NAME: WorldsCollide
---- VERSION: 2.2.0
+--- VERSION: 2.3.0
 --- PREFIX: collide
 
 SMODS.Atlas({
@@ -143,7 +143,7 @@ SMODS.Joker{
         return {vars = {card.ability.extra.mult, card.ability.extra.mult_gain, card.ability.extra.d_remaining}}
     end,
     calculate = function(self, card, context)
-        if context.pre_discard and not context.blueprint and not G.GAME.blind.triggered and G.GAME.current_round.discards_left == card.ability.extra.d_remaining + 1 then
+        if context.pre_discard and not context.blueprint and not context.hook and G.GAME.current_round.discards_left == card.ability.extra.d_remaining + 1 then
                 card.ability.extra.mult = card.ability.extra.mult * 0
                  return {
                      message = ('OVER HEAT'),
@@ -434,11 +434,9 @@ SMODS.Joker{
     calculate = function(self, card, context)
       if context.open_booster and not context.blueprint then
                card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.Xmult_add
-               G.E_MANAGER:add_event(Event({
-                func = function()
-                  card:juice_up(0.7)
-                  card_eval_status_text(card,'extra',nil, nil, nil,{message = "Upgraded", colour = G.C.MULT, instant = true})
-          return true; end}))
+               return {
+                message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult } },
+            }
       end
       if context.skipping_booster and not context.blueprint then
                   card.ability.extra.Xmult = 1
@@ -895,54 +893,6 @@ SMODS.Joker{
 end,
 }
 
-SMODS.Joker{
-  key = 'thepickaxe',
-  loc_txt = {
-    name = 'The Pickaxe',
-    text = {
-     "Each {C:diamonds}Diamond{} card discarded",
-                    "has a {C:green}#1# in #2#{} chance to be", 
-                    "destroyed and permanently",
-                    "increase {C:attention}Blind Payout{} by {C:money}$#3#{}",
-                    "{C:inactive}(Currently {C:money}$#4#{C:inactive})",
-         }
-    },
-    rarity = 3,
-    atlas = "wcjokers", pos = {x = 0, y = 4},
-    cost = 8,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    blueprint_compat = false,
-    perishable_compat = false,
-    config = {extra = {odds = 4, money_add = 1, money = 0,}},
-    loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.money_add, card.ability.extra.money}}
-    end,
-    calculate = function(self, card, context)
-      if context.discard and 
-            not context.other_card.debuff then            
-        if context.other_card:is_suit('Diamonds') and not context.blueprint then
-            if pseudorandom('thepickaxe') < G.GAME.probabilities.normal / card.ability.extra.odds then
-               card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_add
-              return {
-                play_sound('slice1', math.random()*0.1 + 0.6,0.3),
-                message = localize('k_upgrade_ex'),
-                delay = 0.45,
-                colour = G.C.MONEY,
-                remove = true,
-                card = card
-            }
-           end
-        end
-      end
-    end,
-calc_dollar_bonus = function(self, card)
-    local bonus = card.ability.extra.money
-    if bonus > 0 then return bonus
-    end
-end
-}
 
 SMODS.Joker{
   key = 'raygun',
@@ -975,6 +925,68 @@ SMODS.Joker{
             end
       end
 end,
+}
+
+SMODS.Joker{
+  key = 'goldenpickaxe',
+  loc_txt = {
+    name = 'Golden Pickaxe',
+    text = {
+     "Each {C:diamonds}Diamond{} card discarded",
+                    "has a {C:green}#1# in #2#{} chance to be", 
+                    "destroyed and give {C:money}$#3#{},",
+                    "This Joker is destroyed after",
+                    "{C:attention}#4#{} more {C:diamonds}Diamonds{} Discarded",
+
+         }
+    },
+    rarity = 3,
+    atlas = "wcjokers", pos = {x = 0, y = 4},
+    cost = 8,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = {odds = 4, dollars = 4, remaining = 32}},
+    no_pool_flag = 'goldenpickaxe_extinct',
+    loc_vars = function(self, info_queue, card)
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.dollars, card.ability.extra.remaining }}
+    end,
+    calculate = function(self, card, context)
+     if context.hand_drawn and card.ability.extra.remaining <= 0 then
+       G.GAME.pool_flags.goldenpickaxe_extinct = true
+         SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    message = ('Broken!'),
+                    colour = G.C.FILTER
+                }
+      end
+      if context.discard and 
+            not context.other_card.debuff then            
+        if context.other_card:is_suit('Diamonds') and not context.blueprint then
+           card.ability.extra.remaining = card.ability.extra.remaining - 1
+          if card.ability.extra.remaining < 0 then
+              G.GAME.pool_flags.goldenpickaxe_extinct = true
+                    SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    dollars = card.ability.extra.dollars,
+                    message = ('Broken!'),
+                    colour = G.C.FILTER
+                }
+           else if pseudorandom('herobrine') < G.GAME.probabilities.normal / card.ability.extra.odds then
+              return {
+                dollars = card.ability.extra.dollars,
+                play_sound('slice1', math.random()*0.1 + 0.6,0.3),
+                delay = 0.45,
+                remove = true,
+                card = card
+            }
+           end
+         end
+        end
+      end
+    end,
 }
 
 SMODS.Joker{
@@ -1403,7 +1415,6 @@ SMODS.Back {
        end,
      }
 
-
 --Challenges
 
 SMODS.Challenge{
@@ -1411,7 +1422,8 @@ SMODS.Challenge{
     key = 'mpevil4',
     rules = {
         custom = {
-        { id = 'no_reward' },
+        { id = 'no_reward_specific', value = 'Small' },
+        { id = 'no_reward_specific', value = 'Big' },
         { id = 'all_eternal' },
 },
         modifiers = {
@@ -1430,7 +1442,6 @@ SMODS.Challenge{
         {id = 'j_credit_card'},
         {id = 'j_rocket'},
         {id = 'j_satellite'},
-        {id = 'j_collide_thepickaxe'},
 },
         banned_tags = {},
         banned_other = {},
@@ -1602,8 +1613,8 @@ SMODS.Challenge{
         },
 },
     jokers = {
-        {id = 'j_collide_rupees', eternal = true},
         {id = 'j_joker', eternal = true},
+        {id = 'j_collide_rupees', eternal = true},
     },
     consumeables = {{id = 'c_talisman'},
 },
@@ -1616,7 +1627,7 @@ SMODS.Challenge{
             {id = 'v_recyclomancy'},
             {id = 'v_seed_money'},
             {id = 'v_money_tree'},
-            {id = 'j_collide_thepickaxe'},},
+},
         banned_tags = {
             {id = 'tag_investment'},
 },
@@ -1629,15 +1640,18 @@ SMODS.Challenge{
     key = 'minecrafting',
     rules = {
         custom = {
-            {id = 'no_reward_specific', value = 'Big'},
-	    {id = 'no_extra_hand_money'},
-            {id = 'no_interest'},
 },
         modifiers = {
+            {id = "hand_size", value = 5},
+            {id = "dollars", value = 0},
     },
 },
     jokers = {
-        {id = 'j_collide_thepickaxe', eternal = true},
+        {id = 'j_erosion', eternal = true},
+        {id = 'j_collide_goldenpickaxe'},
+        {id = 'j_juggler',},
+        {id = 'j_juggler',},
+        {id = 'j_juggler',},
     },
     consumeables = {
             {id = 'c_star'},
@@ -1645,13 +1659,7 @@ SMODS.Challenge{
     vouchers = {},
     restrictions = {
         banned_cards = {
-            {id = 'j_rocket'},
-            {id = 'j_golden'},
-            {id = 'j_satellite'},
-            {id = 'v_recyclomancy'},
-            {id = 'v_seed_money'},
-            {id = 'v_money_tree'},
-},
+            },
              banned_tags = {},
              banned_other = {}
     },
