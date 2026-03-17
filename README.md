@@ -8,7 +8,8 @@
 ----- 
 <img width="142" height="190" alt="JimReaper2x" src="https://github.com/user-attachments/assets/ff9600e7-c268-412f-8336-562a2f66ba29" /> <img width="142" height="190" alt="SixAndStones2x" src="https://github.com/user-attachments/assets/0e31b2da-2e63-44f5-b982-eff8859ad550" />
 <img width="142" height="190" alt="Soaring7sJokerArt" src="https://github.com/user-attachments/assets/5c871953-bb8a-40b0-ade1-eb6967f43245" />
-![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7) <img width="142" height="240" alt="PSA10JokerArtDisp" src="https://github.com/user-attachments/assets/97a45f5c-cf4a-424d-9fb7-88d99813b5e5" /> <img width="142" height="190" alt="Plumber2x" src="https://github.com/user-attachments/assets/a0806a43-78dc-4011-b441-820de1f6f7ec" />
+![TheLemnisc8JokerArtplus](https://github.com/user-attachments/assets/9bab7b90-4d8e-4a9f-b33e-1afc9137f5b7) <img width="142" height="240" alt="PSA10JokerArtDisp" src="https://github.com/user-attachments/assets/97a45f5c-cf4a-424d-9fb7-88d99813b5e5" /> 
+<img width="142" height="190" alt="Plumber2x" src="https://github.com/user-attachments/assets/61cdc73a-5648-44a0-88d2-154ed6fa1aaf" />
 <img width="142" height="190" alt="CottonCandy2x" src="https://github.com/user-attachments/assets/9e832730-5318-46a0-8675-911adc85286a" />
 <img width="142" height="190" alt="WildWest2x" src="https://github.com/user-attachments/assets/53a65df8-6368-4140-bc09-9ef65d030ec8" />
 <img width="142" height="190" alt="Dagonet2x" src="https://github.com/user-attachments/assets/9fa93ec3-fe32-4585-a757-18390c35955d" />
