@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced mix of original and crossover content from iconic videogames. Features 20 Jokers, 4 Decks, and 10 Challenges.
 --- BADGE_COLOR: EB844D
 --- DISPLAY_NAME: WorldsCollide
---- VERSION: 2.3.0
+--- VERSION: 2.3.1
 --- PREFIX: collide
 
 SMODS.Atlas({
@@ -941,7 +941,7 @@ SMODS.Joker{
          }
     },
     rarity = 3,
-    atlas = "wcjokers", pos = {x = 0, y = 4},
+    atlas = "wcjokers", pos = {x = 0, y = 4}, soul_pos = { x = 1, y = 4 },
     cost = 8,
     unlocked = true,
     discovered = true,
