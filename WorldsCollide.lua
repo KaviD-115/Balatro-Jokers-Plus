@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced mix of original and crossover content from iconic videogames. Features 20 Jokers, 4 Decks, and 10 Challenges.
 --- BADGE_COLOR: EB844D
 --- DISPLAY_NAME: WorldsCollide
---- VERSION: 2.3.1
+--- VERSION: 2.3.2
 --- PREFIX: collide
 
 SMODS.Atlas({
@@ -521,45 +521,64 @@ end,
 }
 
 SMODS.Joker{
-  key = 'plumber',
+  key = 'goldenpickaxe',
   loc_txt = {
-    name = 'Plumber',
+    name = 'Golden Pickaxe',
     text = {
-     "Gains {C:chips}+#2#{} chips",
-     "if played hand",
-     "contains a {C:attention}Flush{}",
-     "{C:inactive}(Currently {C:chips}+#1# {C:inactive}Chips)"
-        }
+     "Each {C:diamonds}Diamond{} card discarded",
+                    "has a {C:green}#1# in #2#{} chance to be", 
+                    "destroyed and give {C:money}$#3#{},",
+                    "This Joker is destroyed after",
+                    "{C:attention}#4#{} more {C:diamonds}Diamonds{} Discarded",
+
+         }
     },
-    rarity = 1,
-    atlas = "wcjokers", pos = {x = 4, y = 0},
-    cost = 5,
+    rarity = 3,
+    atlas = "wcjokers", pos = {x = 0, y = 4}, soul_pos = { x = 1, y = 4 },
+    cost = 8,
     unlocked = true,
     discovered = true,
-    eternal_compat = true,
-    blueprint_compat = true,
-    perishable_compat = false,
-    config = {extra = {chips = 0, chip_gain = 8}},
+    eternal_compat = false,
+    blueprint_compat = false,
+    perishable_compat = true,
+    config = {extra = {odds = 4, dollars = 4, remaining = 32}},
+    no_pool_flag = 'goldenpickaxe_extinct',
     loc_vars = function(self, info_queue, card)
-   return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
-  end, 
+    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.dollars, card.ability.extra.remaining }}
+    end,
     calculate = function(self, card, context)
-      if context.cardarea == G.jokers and context.before and not context.blueprint then 
-        if context.scoring_name == "Flush" or context.scoring_name == "Straight Flush" or context.scoring_name == "Royal Flush" or context.scoring_name == "Flush Five" or context.scoring_name == "Flush House" then
-                        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
-                        return {
-                            message = localize('k_upgrade_ex'),
-                            colour = G.C.CHIPS,
-                            card = card
-                        }
-                         end
+     if context.hand_drawn and card.ability.extra.remaining <= 0 then
+       G.GAME.pool_flags.goldenpickaxe_extinct = true
+         SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    message = ('Broken!'),
+                    colour = G.C.FILTER
+                }
+      end
+      if context.discard and 
+            not context.other_card.debuff then            
+        if context.other_card:is_suit('Diamonds') and not context.blueprint then
+           card.ability.extra.remaining = card.ability.extra.remaining - 1
+          if card.ability.extra.remaining < 0 then
+              G.GAME.pool_flags.goldenpickaxe_extinct = true
+                    SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    dollars = card.ability.extra.dollars,
+                    message = ('Broken!'),
+                    colour = G.C.FILTER
+                }
+           else if pseudorandom('herobrine') < G.GAME.probabilities.normal / card.ability.extra.odds then
+              return {
+                dollars = card.ability.extra.dollars,
+                play_sound('slice1', math.random()*0.1 + 0.6,0.3),
+                delay = 0.45,
+                remove = true,
+                card = card
+            }
+           end
+         end
         end
-        if context.joker_main then
-        return {
-          message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}},
-          chip_mod = card.ability.extra.chips,
-      }
-     end
+      end
     end,
 }
 
@@ -893,6 +912,48 @@ SMODS.Joker{
 end,
 }
 
+SMODS.Joker{
+  key = 'plumber',
+  loc_txt = {
+    name = 'Plumber',
+    text = {
+     "Gains {C:chips}+#2#{} chips",
+     "if played hand",
+     "contains a {C:attention}Flush{}",
+     "{C:inactive}(Currently {C:chips}+#1# {C:inactive}Chips)"
+        }
+    },
+    rarity = 1,
+    atlas = "wcjokers", pos = {x = 4, y = 0},
+    cost = 5,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    blueprint_compat = true,
+    perishable_compat = false,
+    config = {extra = {chips = 0, chip_gain = 8}},
+    loc_vars = function(self, info_queue, card)
+   return {vars = {card.ability.extra.chips, card.ability.extra.chip_gain}}
+  end, 
+    calculate = function(self, card, context)
+      if context.cardarea == G.jokers and context.before and not context.blueprint then 
+        if context.scoring_name == "Flush" or context.scoring_name == "Straight Flush" or context.scoring_name == "Royal Flush" or context.scoring_name == "Flush Five" or context.scoring_name == "Flush House" then
+                        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
+                        return {
+                            message = localize('k_upgrade_ex'),
+                            colour = G.C.CHIPS,
+                            card = card
+                        }
+                         end
+        end
+        if context.joker_main then
+        return {
+          message = localize{type = 'variable', key = 'a_chips', vars = {card.ability.extra.chips}},
+          chip_mod = card.ability.extra.chips,
+      }
+     end
+    end,
+}
 
 SMODS.Joker{
   key = 'raygun',
@@ -925,68 +986,6 @@ SMODS.Joker{
             end
       end
 end,
-}
-
-SMODS.Joker{
-  key = 'goldenpickaxe',
-  loc_txt = {
-    name = 'Golden Pickaxe',
-    text = {
-     "Each {C:diamonds}Diamond{} card discarded",
-                    "has a {C:green}#1# in #2#{} chance to be", 
-                    "destroyed and give {C:money}$#3#{},",
-                    "This Joker is destroyed after",
-                    "{C:attention}#4#{} more {C:diamonds}Diamonds{} Discarded",
-
-         }
-    },
-    rarity = 3,
-    atlas = "wcjokers", pos = {x = 0, y = 4}, soul_pos = { x = 1, y = 4 },
-    cost = 8,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = false,
-    blueprint_compat = false,
-    perishable_compat = true,
-    config = {extra = {odds = 4, dollars = 4, remaining = 32}},
-    no_pool_flag = 'goldenpickaxe_extinct',
-    loc_vars = function(self, info_queue, card)
-    return {vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds, card.ability.extra.dollars, card.ability.extra.remaining }}
-    end,
-    calculate = function(self, card, context)
-     if context.hand_drawn and card.ability.extra.remaining <= 0 then
-       G.GAME.pool_flags.goldenpickaxe_extinct = true
-         SMODS.destroy_cards(card, nil, nil, true)
-                return {
-                    message = ('Broken!'),
-                    colour = G.C.FILTER
-                }
-      end
-      if context.discard and 
-            not context.other_card.debuff then            
-        if context.other_card:is_suit('Diamonds') and not context.blueprint then
-           card.ability.extra.remaining = card.ability.extra.remaining - 1
-          if card.ability.extra.remaining < 0 then
-              G.GAME.pool_flags.goldenpickaxe_extinct = true
-                    SMODS.destroy_cards(card, nil, nil, true)
-                return {
-                    dollars = card.ability.extra.dollars,
-                    message = ('Broken!'),
-                    colour = G.C.FILTER
-                }
-           else if pseudorandom('herobrine') < G.GAME.probabilities.normal / card.ability.extra.odds then
-              return {
-                dollars = card.ability.extra.dollars,
-                play_sound('slice1', math.random()*0.1 + 0.6,0.3),
-                delay = 0.45,
-                remove = true,
-                card = card
-            }
-           end
-         end
-        end
-      end
-    end,
 }
 
 SMODS.Joker{
