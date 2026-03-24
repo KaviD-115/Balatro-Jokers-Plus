@@ -5,7 +5,7 @@
 --- MOD_DESCRIPTION: A Vanilla Balanced mix of original and crossover content from iconic videogames. Features 20 Jokers, 4 Decks, and 10 Challenges.
 --- BADGE_COLOR: EB844D
 --- DISPLAY_NAME: WorldsCollide
---- VERSION: 2.3.2
+--- VERSION: 2.3.3
 --- PREFIX: collide
 
 SMODS.Atlas({
@@ -525,11 +525,11 @@ SMODS.Joker{
   loc_txt = {
     name = 'Golden Pickaxe',
     text = {
-     "Each {C:diamonds}Diamond{} card discarded",
+     "Each {C:diamonds}Diamond{} card {C:attention}discarded{}",
                     "has a {C:green}#1# in #2#{} chance to be", 
                     "destroyed and give {C:money}$#3#{},",
                     "This Joker is destroyed after",
-                    "{C:attention}#4#{} more {C:diamonds}Diamonds{} Discarded",
+                    "{C:attention}#4#{} more {C:diamonds}Diamonds{} discarded",
 
          }
     },
